@@ -1,0 +1,30 @@
+{
+    "name": "axsor/laravel-phpipam",
+    "description": "Connection between laravel app and phpipam server",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "axsor",
+            "email": "alexsorribes@e-ports.eu"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Axsor\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Axsor\\LaravelPhpIPAM\\PhpIPAMServiceProvider"
+            ],
+            "aliases": {
+                "PhpIPAM": "Axsor\\LaravelPhpIPAM\\PhpIPAMFacade"
+            }
+        }
+    }
+}
