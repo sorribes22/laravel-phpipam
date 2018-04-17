@@ -5,8 +5,8 @@ return [
     /**
      * Can configure multiple connections to different PhpIPAM servers
      */
-    'connections' => [
-        'default' => [
+//    'connections' => [
+//        'default' => [
             /**
              * URL to access to PhpIPAM server
              */
@@ -34,20 +34,25 @@ return [
             /**
              * API KEY to access to PhpIPAM server
              */
-            'key'   => env('PHPIPAM_API_KEY')
-        ],
+            'key'   => env('PHPIPAM_API_KEY'),
 
-        /**
-         * Example of multiple connections:
-         *
-         * 'server2' => [
-         *      'url'   => env('PHPIPAM_SERVER2_API_URL'),
-         *      'app'   => env('PHPIPAM_SERVER2_API_APP'),
-         *      'user'  => env('PHPIPAM_SERVER2_API_USER'),
-         *      'pass'  => env('PHPIPAM_SERVER2_API_PASS'),
-         *      'key'   => env('PHPIPAM_SERVER2_API_KEY')
-         * ]
-         *
-         */
-    ]
+            'auth_token'    => env('PHPIPAM_API_AUTH_TOKEN'),
+            'auth_expires'  => env('PHPIPAM_API_AUTH_EXPIRES'),
+//        ],
+//
+//        /**
+//         * Example of multiple connections:
+//         *
+//         * 'server2' => [
+//         *      'url'           => env('PHPIPAM_SERVER2_API_URL'),
+//         *      'app'           => env('PHPIPAM_SERVER2_API_APP'),
+//         *      'user'          => env('PHPIPAM_SERVER2_API_USER'),
+//         *      'pass'          => env('PHPIPAM_SERVER2_API_PASS'),
+//         *      'key'           => env('PHPIPAM_SERVER2_API_KEY'),
+//         *      'auth_token'    => env('PHPIPAM_SERVER2_API_AUTH_TOKEN'),
+//         *      'auth_expires'  => env('PHPIPAM_SERVER2_API_AUTH_EXPIRES')
+//         * ]
+//         *
+//         */
+//    ]
 ];
