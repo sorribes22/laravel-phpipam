@@ -3,8 +3,7 @@
 namespace Axsor\LaravelPhpIPAM;
 
 
-use Axsor\LaravelLibreNMS\Exceptions\PhpIPAMConfigNotFound;
-use Carbon\Carbon;
+use Axsor\LaravelPhpIPAM\Exceptions\PhpIPAMConfigNotFound;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
@@ -43,7 +42,7 @@ class Connection
 
     protected static $auth_token;
 
-    protected static $auth_expires;
+//    protected static $auth_expires;
 
     /**
      * Client to send HTTP requests
@@ -61,8 +60,9 @@ class Connection
             || !Config::has("phpipam.user")
             || !Config::has("phpipam.pass")
             || !Config::has("phpipam.key")
-            || !Config::has("phpipam.auth_token")
-            || !Config::has("phpipam.auth_expires"))
+//            || !Config::has("phpipam.auth_token")
+//            || !Config::has("phpipam.auth_expires")
+        )
         {
             throw new PhpIPAMConfigNotFound;
         } else
@@ -77,9 +77,9 @@ class Connection
 
             self::$key = config("phpipam.key");
 
-            self::$auth_token = config("phpipam.auth_token");
-
-            self::$auth_expires = config("phpipam.auth_expires");
+//            self::$auth_token = config("phpipam.auth_token");
+//
+//            self::$auth_expires = config("phpipam.auth_expires");
 
             self::$client = new Client;
         }
@@ -128,7 +128,7 @@ class Connection
      */
     protected static function request($method, $uri, $payload = [])
     {
-        if (self::checkAuthenticatedToken())
+        if (self::getAuthenticatedToken())
         {
             return json_decode(self::$client->$method(self::$url."/".self::$app."/".$uri, [
                 'headers' => [
@@ -139,25 +139,26 @@ class Connection
         }
     }
 
-    /**
-     * Check if auth_token is not empty and if token is not expired.
-     *
-     * Try to get token if not.
-     *
-     * @return bool Has valid authenticated token?
-     */
-    private static function checkAuthenticatedToken()
-    {
-        if (self::$auth_token && self::$auth_expires)
-        {
-            if (!Carbon::parse(self::$auth_expires)->isPast())
-            {
-                return true;
-            }
-        }
-
-        return self::getAuthenticatedToken();
-    }
+//    /**
+//     * Check if auth_token is not empty and if token is not expired.
+//     *
+//     * Try to get token if not.
+//     *
+//     * @return bool Has valid authenticated token?
+//     */
+//    private static function checkAuthenticatedToken()
+//    {
+//        if (self::$auth_token && self::$auth_expires)
+//        {
+//            // `!Carbon::parse(self::$auth_expires)->isPast()` not working
+////            if ((bool) Carbon::now()->toDateTimeString() <= self::$auth_expires)
+////            {
+////                return true;
+////            }
+//        }
+//
+//        return self::getAuthenticatedToken();
+//    }
 
 
 
@@ -169,21 +170,20 @@ class Connection
                 self::$pass
             ],
             'headers' => [
-                'token' => 'Basic ' . self::$key
+                'token' => self::$key
             ],
             'json' => []
         ]);
-
 
         if ($response->getStatusCode() == 200)
         {
             $body = json_decode($response->getBody()->getContents(), true)['data'];
 
             self::$auth_token = $body['token'];
-            self::$auth_expires = $body['expires'];
+//            self::$auth_expires = $body['expires'];
 
-            self::changeEnvironmentValue("PHPIPAM_API_AUTH_TOKEN", self::$auth_token, true);
-            self::changeEnvironmentValue("PHPIPAM_API_AUTH_EXPIRES", self::$auth_expires, true);
+//            self::changeEnvironmentValue("PHPIPAM_API_AUTH_TOKEN", self::$auth_token, true);
+//            self::changeEnvironmentValue("PHPIPAM_API_AUTH_EXPIRES", self::$auth_expires, true);
 
             return true;
         }
@@ -191,26 +191,26 @@ class Connection
         return false;
     }
 
-    /**
-     * Function getted from:
-     * https://stackoverflow.com/questions/40450162/how-to-set-env-values-in-laravel-programmatically-on-the-fly#46396076
-     *
-     * @param $envKey
-     * @param $envValue
-     * @param bool $double_commed
-     */
-    private static function changeEnvironmentValue($envKey, $envValue, $double_commed = false)
-    {
-        $envFile = app()->environmentFilePath();
-        $str = file_get_contents($envFile);
-
-        $oldValue = env($envKey);
-
-        if ($double_commed)$str = str_replace("{$envKey}=\"{$oldValue}\"", "{$envKey}=\"{$envValue}\"", $str);
-        else $str = str_replace("{$envKey}={$oldValue}", "{$envKey}={$envValue}", $str);
-
-        $fp = fopen($envFile, 'w');
-        fwrite($fp, $str);
-        fclose($fp);
-    }
+//    /**
+//     * Function getted from:
+//     * https://stackoverflow.com/questions/40450162/how-to-set-env-values-in-laravel-programmatically-on-the-fly#46396076
+//     *
+//     * @param $envKey
+//     * @param $envValue
+//     * @param bool $double_commed
+//     */
+//    private static function changeEnvironmentValue($envKey, $envValue, $double_commed = false)
+//    {
+//        $envFile = app()->environmentFilePath();
+//        $str = file_get_contents($envFile);
+//
+//        $oldValue = env($envKey);
+//
+//        if ($double_commed)$str = str_replace("{$envKey}=\"{$oldValue}\"", "{$envKey}=\"{$envValue}\"", $str);
+//        else $str = str_replace("{$envKey}={$oldValue}", "{$envKey}={$envValue}", $str);
+//
+//        $fp = fopen($envFile, 'w');
+//        fwrite($fp, $str);
+//        fclose($fp);
+//    }
 }

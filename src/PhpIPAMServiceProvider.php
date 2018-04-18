@@ -3,6 +3,7 @@
 namespace Axsor\LaravelPhpIPAM;
 
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class PhpIPAMServiceProvider extends ServiceProvider
@@ -19,13 +20,18 @@ class PhpIPAMServiceProvider extends ServiceProvider
     protected $configPath = '/../config/phpipam.php';
 
 
-
+    /**
+     * Registering PhpIPAM config without publishing it
+     */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . $this->configPath => config_path($this->configFile),
-            'config'
-        ]);
+//        if ($this->app['config']->get('phpipam'))
+//        {
+        if ($this->app['config']->get('phpipam') === null) {
+            $this->app['config']->set('phpipam', require __DIR__ . '/../config/phpipam.php');
+        }
+//        }
+//        else Log::error('Cannot register PhpIPAM config file because same name is catched!');
     }
 
     /**

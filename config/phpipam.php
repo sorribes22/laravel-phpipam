@@ -1,58 +1,33 @@
 <?php
 
 return [
+    /**
+     * URL to access to PhpIPAM server
+     */
+    'url'   => env('PHPIPAM_API_URL'),
+
 
     /**
-     * Can configure multiple connections to different PhpIPAM servers
+     * App name from PhpIPAM server
      */
-//    'connections' => [
-//        'default' => [
-            /**
-             * URL to access to PhpIPAM server
-             */
-            'url'   => env('PHPIPAM_API_URL'),
+    'app'   => env('PHPIPAM_API_APP'),
 
 
-            /**
-             * App name from PhpIPAM server
-             */
-            'app'   => env('PHPIPAM_API_APP'),
+    /**
+     * User from PhpIPAM server
+     */
+    'user'  => env('PHPIPAM_API_USER'),
 
 
-            /**
-             * User from PhpIPAM server
-             */
-            'user'  => env('PHPIPAM_API_USER'),
+    /**
+     * Pass from PhpIPAM server
+     */
+    'pass'  => env('PHPIPAM_API_PASS'),
 
 
-            /**
-             * Pass from PhpIPAM server
-             */
-            'pass'  => env('PHPIPAM_API_PASS'),
+    /**
+     * API KEY to access to PhpIPAM server
+     */
+    'key'   => env('PHPIPAM_API_KEY'),
 
-
-            /**
-             * API KEY to access to PhpIPAM server
-             */
-            'key'   => env('PHPIPAM_API_KEY'),
-
-            'auth_token'    => env('PHPIPAM_API_AUTH_TOKEN'),
-            'auth_expires'  => env('PHPIPAM_API_AUTH_EXPIRES'),
-//        ],
-//
-//        /**
-//         * Example of multiple connections:
-//         *
-//         * 'server2' => [
-//         *      'url'           => env('PHPIPAM_SERVER2_API_URL'),
-//         *      'app'           => env('PHPIPAM_SERVER2_API_APP'),
-//         *      'user'          => env('PHPIPAM_SERVER2_API_USER'),
-//         *      'pass'          => env('PHPIPAM_SERVER2_API_PASS'),
-//         *      'key'           => env('PHPIPAM_SERVER2_API_KEY'),
-//         *      'auth_token'    => env('PHPIPAM_SERVER2_API_AUTH_TOKEN'),
-//         *      'auth_expires'  => env('PHPIPAM_SERVER2_API_AUTH_EXPIRES')
-//         * ]
-//         *
-//         */
-//    ]
 ];

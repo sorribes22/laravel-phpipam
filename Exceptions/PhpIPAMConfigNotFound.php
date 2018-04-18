@@ -1,6 +1,6 @@
 <?php
 
-namespace Axsor\LaravelLibreNMS\Exceptions;
+namespace Axsor\LaravelPhpIPAM\Exceptions;
 
 use Exception;
 use Throwable;
