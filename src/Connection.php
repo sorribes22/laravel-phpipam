@@ -3,10 +3,10 @@
 namespace Axsor\LaravelPhpIPAM;
 
 
+use Axsor\LaravelPhpIPAM\Exceptions\PhpIPAMBadCredentials;
 use Axsor\LaravelPhpIPAM\Exceptions\PhpIPAMConfigNotFound;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
 
 class Connection
 {
@@ -40,9 +40,12 @@ class Connection
      */
     protected static $key;
 
+    /**
+     * Token returned from PhpIPAM when login success
+     * @var
+     */
     protected static $auth_token;
 
-//    protected static $auth_expires;
 
     /**
      * Client to send HTTP requests
@@ -60,8 +63,6 @@ class Connection
             || !Config::has("phpipam.user")
             || !Config::has("phpipam.pass")
             || !Config::has("phpipam.key")
-//            || !Config::has("phpipam.auth_token")
-//            || !Config::has("phpipam.auth_expires")
         )
         {
             throw new PhpIPAMConfigNotFound;
@@ -76,10 +77,6 @@ class Connection
             self::$pass = config("phpipam.pass");
 
             self::$key = config("phpipam.key");
-
-//            self::$auth_token = config("phpipam.auth_token");
-//
-//            self::$auth_expires = config("phpipam.auth_expires");
 
             self::$client = new Client;
         }
@@ -125,6 +122,7 @@ class Connection
      * @param $uri String path added to base url
      * @param array $payload data to post/put/patch
      * @return mixed
+     * @throws PhpIPAMBadCredentials
      */
     protected static function request($method, $uri, $payload = [])
     {
@@ -136,32 +134,14 @@ class Connection
                 ],
                 'json' => $payload
             ])->getBody()->getContents(), true);
-        }
+        } else throw new PhpIPAMBadCredentials("Invalid username or password.", 401);
     }
 
-//    /**
-//     * Check if auth_token is not empty and if token is not expired.
-//     *
-//     * Try to get token if not.
-//     *
-//     * @return bool Has valid authenticated token?
-//     */
-//    private static function checkAuthenticatedToken()
-//    {
-//        if (self::$auth_token && self::$auth_expires)
-//        {
-//            // `!Carbon::parse(self::$auth_expires)->isPast()` not working
-////            if ((bool) Carbon::now()->toDateTimeString() <= self::$auth_expires)
-////            {
-////                return true;
-////            }
-//        }
-//
-//        return self::getAuthenticatedToken();
-//    }
-
-
-
+    /**
+     * Authenticates on PhpIPAM server and gets token to use API
+     *
+     * @return bool
+     */
     private static function getAuthenticatedToken()
     {
         $response = self::$client->post(self::$url."/".self::$app."/user/", [
@@ -180,37 +160,10 @@ class Connection
             $body = json_decode($response->getBody()->getContents(), true)['data'];
 
             self::$auth_token = $body['token'];
-//            self::$auth_expires = $body['expires'];
-
-//            self::changeEnvironmentValue("PHPIPAM_API_AUTH_TOKEN", self::$auth_token, true);
-//            self::changeEnvironmentValue("PHPIPAM_API_AUTH_EXPIRES", self::$auth_expires, true);
 
             return true;
         }
 
         return false;
     }
-
-//    /**
-//     * Function getted from:
-//     * https://stackoverflow.com/questions/40450162/how-to-set-env-values-in-laravel-programmatically-on-the-fly#46396076
-//     *
-//     * @param $envKey
-//     * @param $envValue
-//     * @param bool $double_commed
-//     */
-//    private static function changeEnvironmentValue($envKey, $envValue, $double_commed = false)
-//    {
-//        $envFile = app()->environmentFilePath();
-//        $str = file_get_contents($envFile);
-//
-//        $oldValue = env($envKey);
-//
-//        if ($double_commed)$str = str_replace("{$envKey}=\"{$oldValue}\"", "{$envKey}=\"{$envValue}\"", $str);
-//        else $str = str_replace("{$envKey}={$oldValue}", "{$envKey}={$envValue}", $str);
-//
-//        $fp = fopen($envFile, 'w');
-//        fwrite($fp, $str);
-//        fclose($fp);
-//    }
 }
