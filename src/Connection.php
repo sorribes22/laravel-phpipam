@@ -99,7 +99,7 @@ class Connection
         return self::request('post', $uri, $data);
     }
 
-    public static function put($uri, $data)
+    public static function put($uri, $data = [])
     {
         return self::request('put', $uri, $data);
     }
@@ -109,7 +109,7 @@ class Connection
         return self::request('delete', $uri);
     }
 
-    public static function patch($uri, $data)
+    public static function patch($uri, $data = [])
     {
         return self::request('patch', $uri, $data);
     }

@@ -80,6 +80,13 @@ PhpIPAM::subnet(33)->address("10.0.18.97");
 ```
 use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
 
+// Get IP
+PhpIPAM::address(1);
+
+// Ping address (Return true if ping results success)
+PhpIPAM::ping(1);
+PhpIPAM::address(1)->ping();
+
 // Create Address giving all data ('subnetId' and 'ip' included)
 PhpIPAM::createAddress([
     "subnetId" => "1",
@@ -99,6 +106,23 @@ PhpIPAM::createFirstFreeAddress($subnet, [
     "location" => "0",
     "note" => "My firts IP",
 ]);
+
+// Update address (Returns true if updates it success)
+PhpIPAM::editAddress(1, [
+    "description" => "Testing create",
+    "hostname" => "TestingHostname",
+    "tag" => "2",
+    "location" => "0",
+    "note" => "My firts edited IP",
+]);
+
+$address = PhpIPAM::address(1);
+$address->hostname = "Test";
+$address->edit();
+
+// Delete address (Returns true if deletes it success)
+PhpIPAM::dropAddress(1);
+PhpIPAM::address(1)->drop();
 
 // Get all tags
 PhpIPAM::tags();

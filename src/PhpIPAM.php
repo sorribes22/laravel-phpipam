@@ -74,6 +74,16 @@ class PhpIPAM
      *##############################################------ ADDRESS ------###############################################
      *################################################################################################################*/
 
+    public static function address($ip)
+    {
+        return (new IPRequest)->address($ip);
+    }
+
+    public static function ping($ip)
+    {
+        return (new IPRequest)->ping($ip);
+    }
+
     public static function createFirstFreeAddress($subnet, $ip)
     {
         return (new IPRequest)->createFirstFree($subnet, $ip);
@@ -82,6 +92,16 @@ class PhpIPAM
     public static function createAddress($ip)
     {
         return (new IPRequest)->create($ip);
+    }
+
+    public static function editAddress($ip_id, $ip)
+    {
+        return (new IPRequest)->edit($ip_id, $ip);
+    }
+
+    public static function dropAddress($ip)
+    {
+        return (new IPRequest)->drop($ip);
     }
 
     public static function tags()

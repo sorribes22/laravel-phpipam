@@ -7,6 +7,7 @@ use Axsor\LaravelPhpIPAM\Connection;
 use Axsor\LaravelPhpIPAM\Models\IPs\IP;
 use Axsor\LaravelPhpIPAM\Models\Subnets\Subnet;
 use Axsor\LaravelPhpIPAM\Models\Tags\TagCollection;
+use Illuminate\Support\Facades\Log;
 
 class IPRequest extends Connection
 {
@@ -15,6 +16,27 @@ class IPRequest extends Connection
         parent::__construct();
     }
 
+    /**
+     * Return IP
+     *
+     * @param $ip
+     * @return IP
+     */
+    public function address($ip)
+    {
+        return new IP(parent::get("addresses/{$ip}/")['data']);
+    }
+
+    /**
+     * Returns true if address responds
+     *
+     * @param $ip
+     * @return bool
+     */
+    public function ping($ip)
+    {
+        return parent::get("addresses/{$ip}/ping/")['data']['result_code'] === "SUCCESS";
+    }
 
     /**
      * Create a new ip address using the first free ip found in subnet.
@@ -30,7 +52,7 @@ class IPRequest extends Connection
     {
         $subnet_id = $subnet;
 
-        if (get_class($subnet) == Subnet::class)
+        if (gettype($subnet) == "object")
         {
             $subnet_id = $subnet->id;
         }
@@ -47,6 +69,36 @@ class IPRequest extends Connection
     public function create($ip)
     {
         return parent::post("addresses/", $ip);
+    }
+
+    /**
+     * Updates address. Return true if updates it successful
+     *
+     * @param $ip_id
+     * @param $ip
+     * @return bool
+     */
+    public function edit($ip_id, $ip)
+    {
+        return parent::patch("addresses/{$ip_id}/", $ip)['message'] === "Address updated";
+    }
+
+    /**
+     * Delete address
+     *
+     * @param $ip
+     * @return mixed
+     */
+    public function drop($ip)
+    {
+        $ip_id = $ip;
+
+        if (gettype($ip) == "object")
+        {
+            $ip_id = $ip->id;
+        }
+
+        return parent::delete("addresses/{$ip_id}/")['message'] === "Address deleted";
     }
 
     /**
