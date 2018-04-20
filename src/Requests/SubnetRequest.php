@@ -3,7 +3,6 @@
 namespace Axsor\LaravelPhpIPAM\Requests;
 
 
-use Axsor\LaravelPhpIPAM\Models\IPs\IP;
 use Axsor\LaravelPhpIPAM\Models\IPs\IPCollection;
 use Axsor\LaravelPhpIPAM\Models\Subnets\Subnet;
 use Axsor\LaravelPhpIPAM\Models\Subnets\SubnetUsage;

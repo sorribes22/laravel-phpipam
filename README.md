@@ -1,19 +1,22 @@
 # laravel-phpipam
 > Connection between laravel and [PhpIPAM](https://phpipam.net/)
 
+This package is in developement but some functionalities are working yet.
+If you want to improve this package fork it and pull request.
 
 ## Index
 * [Configuration](#configuration)
 * [Usage](#usage)
+    * [Section](#section)
     * [Subnet](#subnet)
     * [Address](#address)
     * [Locations](#locations)
 
 ## Configuration
-Must to add some keys into `.env` file.
+Must to add this keys into `.env` file.
 
 ```
-PHPIPAM_API_URL=localhost/phpipam/api
+PHPIPAM_API_URL=http://127.0.0.1/phpipam/api
 PHPIPAM_API_USER=user_phpipam
 PHPIPAM_API_PASS=password_user_phpipam
 PHPIPAM_API_APP=phpipam_app_name
@@ -21,11 +24,38 @@ PHPIPAM_API_KEY=phpipam_api_key
 ```
 
 ## Usage
+To call PhpIPAM facade use next **use**:
+
+`use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;`
+
 The return is **laravel model** in case of fetch single item.
 In case of fetch more than one item the return will be **Collection** of laravel model.
+In case can't use model or connection the return will be the result of API call.
+
+### Section
+```
+use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
+
+// Get all sections
+PhpIPAM::sections();
+
+// Get section
+PhpIPAM::section(1);
+PhpIPAM::section("Section 1");
+
+// Get subnets of section
+PhpIPAM::sectionSubnets(1);
+PhpIPAM::section(4)->subnets();
+
+// Get custom fields
+PhpIPAM::sectionCustomFields(1);
+PhpIPAM::section("Section 1")->customFields();
+```
 
 ### Subnet
 ```
+use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
+
 // Get a subnet
 PhpIPAM::subnet(1);
 
@@ -48,6 +78,8 @@ PhpIPAM::subnet(33)->address("10.0.18.97");
 
 ### Address
 ```
+use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
+
 // Create Address giving all data ('subnetId' and 'ip' included)
 PhpIPAM::createAddress([
     "subnetId" => "1",
@@ -74,6 +106,8 @@ PhpIPAM::tags();
 
 ### Locations
 ```
+use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
+
 // Get all subnets of location
 PhpIPAM::subnetLocations(1);
 

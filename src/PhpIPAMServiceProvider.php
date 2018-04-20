@@ -10,11 +10,6 @@ class PhpIPAMServiceProvider extends ServiceProvider
 {
 
     /**
-     * @var string Name with which the file will be created
-     */
-    protected $configFile = 'phpipam.php';
-
-    /**
      * @var string Path to package configuration file
      */
     protected $configPath = '/../config/phpipam.php';
@@ -25,13 +20,10 @@ class PhpIPAMServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        if ($this->app['config']->get('phpipam'))
-//        {
-        if ($this->app['config']->get('phpipam') === null) {
-            $this->app['config']->set('phpipam', require __DIR__ . '/../config/phpipam.php');
+        if ($this->app['config']->get('phpipam') === null)
+        {
+            $this->app['config']->set('phpipam', require __DIR__ . $this->configPath);
         }
-//        }
-//        else Log::error('Cannot register PhpIPAM config file because same name is catched!');
     }
 
     /**

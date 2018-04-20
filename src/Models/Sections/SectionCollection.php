@@ -1,11 +1,11 @@
 <?php
 
-namespace Axsor\LaravelPhpIPAM\Models\Subnets;
+namespace Axsor\LaravelPhpIPAM\Models\Sections;
 
 
 use Illuminate\Support\Collection;
 
-class SubnetCollection extends Collection
+class SectionCollection extends Collection
 {
     public function __construct($items = [])
     {
@@ -13,7 +13,7 @@ class SubnetCollection extends Collection
 
         foreach ($items as $item)
         {
-            $this->push(new Subnet($item));
+            $this->push(new Section($item));
         }
     }
 }

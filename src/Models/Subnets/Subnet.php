@@ -63,6 +63,7 @@ class Subnet extends Model
         "editDate",
         "lastScan",
         "lastDiscovery",
-        "calculation"
+        "calculation",
+        "usage"
     ];
 }
