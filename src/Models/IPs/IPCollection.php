@@ -14,7 +14,7 @@ class IPCollection extends Collection
 
         foreach ($items as $item)
         {
-            $this->push(new IP($item));
+            $this->push(is_array($item) ? new IP($item) : $item);
         }
     }
 }

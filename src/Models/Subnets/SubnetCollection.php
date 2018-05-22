@@ -13,7 +13,8 @@ class SubnetCollection extends Collection
 
         foreach ($items as $item)
         {
-            $this->push(new Subnet($item));
+            // is_array() verify to be available to use ->where() of Collection
+            $this->push(is_array($item) ? new Subnet($item) : $item);
         }
     }
 }

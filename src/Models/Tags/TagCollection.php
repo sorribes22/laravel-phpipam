@@ -13,7 +13,7 @@ class TagCollection extends Collection
 
         foreach ($items as $item)
         {
-            $this->push(new Tag($item));
+            $this->push(is_array($item) ? new Tag($item) : $item);
         }
     }
 }

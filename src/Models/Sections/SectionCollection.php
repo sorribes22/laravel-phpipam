@@ -13,7 +13,7 @@ class SectionCollection extends Collection
 
         foreach ($items as $item)
         {
-            $this->push(new Section($item));
+            $this->push(is_array($item) ? new Section($item) : $item);
         }
     }
 }
