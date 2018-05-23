@@ -33,37 +33,5 @@ class Subnet extends Model
         return (new SubnetRequest())->address($this->id, $ip);
     }
 
-    protected $fillable = [
-        "id",
-        "subnet",
-        "mask",
-        "sectionId",
-        "description",
-        "linked_subnet",
-        "firewallAddressObject",
-        "vrfId",
-        "masterSubnetId",
-        "allowRequests",
-        "vlanId",
-        "showName",
-        "device",
-        "permissions",
-        "pingSubnet",
-        "discoverSubnet",
-        "resolveDNS",
-        "DNSrecursive",
-        "DNSrecords",
-        "nameserverId",
-        "scanAgent",
-        "isFolder",
-        "isFull",
-        "tag",
-        "threshold",
-        "location",
-        "editDate",
-        "lastScan",
-        "lastDiscovery",
-        "calculation",
-        "usage"
-    ];
+    protected $guarded = [];
 }

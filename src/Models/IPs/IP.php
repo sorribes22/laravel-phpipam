@@ -59,25 +59,5 @@ class IP extends Model
         $this->attributes['PTRignore'] = (boolean) $value;
     }
 
-    protected $fillable = [
-        "id",
-        "subnetId",
-        "ip",
-        "is_gateway",
-        "description",
-        "hostname",
-        "mac",
-        "owner",
-        "tag",
-        "deviceId",
-        "location",
-        "port",
-        "note",
-        "lastSeen",
-        "excludePing",
-        "PTRignore",
-        "PTR",
-        "firewallAddressObject",
-        "editDate",
-    ];
+    protected $guarded = [];
 }

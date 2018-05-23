@@ -72,6 +72,7 @@ class SubnetRequest extends Connection
      */
     public function addresses($subnet)
     {
+//        dd(parent::get("subnets/{$subnet}/addresses/")['data']);
         return new IPCollection(parent::get("subnets/{$subnet}/addresses/")['data']);
     }
 

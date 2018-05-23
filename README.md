@@ -29,8 +29,9 @@ To call PhpIPAM facade use next **use**:
 `use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;`
 
 The return is **laravel model** in case of fetch single item.
-In case of fetch more than one item the return will be **Collection** of laravel model.
+In case of fetch more than one item the return will be a Collection (Check all methods of laravel [Collection](https://laravel.com/docs/collections)) of laravel model.
 In case can't use model or connection the return will be the result of API call.
+If your PhpIPAM has custom fields on model, it will appear as normal field (name starts with 'custom_').
 
 ### Section
 ```

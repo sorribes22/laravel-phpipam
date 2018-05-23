@@ -18,19 +18,5 @@ class Section extends Model
         return (new SectionRequest)->customFields($this->id);
     }
 
-    protected $fillable = [
-        "id",
-        "name",
-        "description",
-        "masterSection",
-        "permissions",
-        "strictMode",
-        "subnetOrdering",
-        "order",
-        "editDate",
-        "showVLAN",
-        "showVRF",
-        "showSupernetOnly",
-        "DNS",
-    ];
+    protected $guarded = [];
 }
