@@ -66,11 +66,23 @@ class SectionRequest extends Connection
         return self::hasContent($response) ? $response['data'] : null;
     }
 
+    /**
+     * Creates a section
+     *
+     * @param $section
+     * @return mixed
+     */
     public function create($section)
     {
         return parent::post('sections/', $section);
     }
 
+    /**
+     * Creates and returns a section
+     *
+     * @param $section
+     * @return Section|null
+     */
     public function createAndGet($section)
     {
         $response = $this->create($section);

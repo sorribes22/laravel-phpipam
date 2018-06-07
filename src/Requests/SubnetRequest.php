@@ -89,11 +89,23 @@ class SubnetRequest extends Connection
         return new IPCollection(parent::get("subnets/{$subnet}/addresses/{$ip}/")['data']);
     }
 
+    /**
+     * Creates a subnet
+     *
+     * @param $subnet
+     * @return mixed
+     */
     public function create($subnet)
     {
         return parent::post("subnets/", $subnet);
     }
 
+    /**
+     * Creates and returns a subnet
+     *
+     * @param $subnet
+     * @return Subnet|null
+     */
     public function createAndGet($subnet)
     {
         $response = $this->create($subnet);

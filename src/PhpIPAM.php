@@ -78,12 +78,12 @@ class PhpIPAM
         return (new SubnetRequest)->address($subnet, $ip);
     }
 
-    public function createSubnet($subnet)
+    public static function createSubnet($subnet)
     {
         return (new SubnetRequest)->create($subnet);
     }
 
-    public function createAndGetSubnet($subnet)
+    public static function createAndGetSubnet($subnet)
     {
         return (new SubnetRequest)->createAndGet($subnet);
     }
