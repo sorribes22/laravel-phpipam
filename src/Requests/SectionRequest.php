@@ -22,7 +22,9 @@ class SectionRequest extends Connection
      */
     public function sections()
     {
-        return new SectionCollection(parent::get("sections/")['data']);
+        $response = parent::get("sections/");
+
+        return self::hasContent($response) ? new SectionCollection($response['data']) : new SectionCollection();
     }
 
     /**
@@ -33,7 +35,9 @@ class SectionRequest extends Connection
      */
     public function section($section)
     {
-        return new Section(parent::get("sections/{$section}/")['data']);
+        $response = parent::get("sections/{$section}/");
+
+        return self::hasContent($response) ? new Section($response['data']) : null;
     }
 
     /**
@@ -44,7 +48,9 @@ class SectionRequest extends Connection
      */
     public function subnets($section)
     {
-        return new SubnetCollection(parent::get("sections/{$section}/subnets/")['data']);
+        $response = parent::get("sections/{$section}/subnets/");
+
+        return self::hasContent($response) ? new SubnetCollection($response['data']) : new SubnetCollection();
     }
 
     /**
@@ -55,6 +61,20 @@ class SectionRequest extends Connection
      */
     public function customFields($section)
     {
-        return parent::get("sections/{$section}/custom_fields/")['data'];
+        $response = parent::get("sections/{$section}/custom_fields/");
+
+        return self::hasContent($response) ? $response['data'] : null;
+    }
+
+    public function create($section)
+    {
+        return parent::post('sections/', $section);
+    }
+
+    public function createAndGet($section)
+    {
+        $response = $this->create($section);
+
+        return array_key_exists('id', $response) ? $this->section($response['id']) : null;
     }
 }

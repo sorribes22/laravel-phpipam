@@ -34,6 +34,15 @@ class PhpIPAM
         return (new SectionRequest)->customFields($section);
     }
 
+    public static function createSection($section)
+    {
+        return (new SectionRequest)->create($section);
+    }
+
+    public static function createAndGetSection($section)
+    {
+        return (new SectionRequest)->createAndGet($section);
+    }
 
     /*##################################################################################################################
      *###############################################------ SUBNET ------###############################################
@@ -67,6 +76,16 @@ class PhpIPAM
     public static function subnetAddress($subnet, $ip)
     {
         return (new SubnetRequest)->address($subnet, $ip);
+    }
+
+    public function createSubnet($subnet)
+    {
+        return (new SubnetRequest)->create($subnet);
+    }
+
+    public function createAndGetSubnet($subnet)
+    {
+        return (new SubnetRequest)->createAndGet($subnet);
     }
 
 

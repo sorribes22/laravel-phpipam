@@ -55,7 +55,7 @@ class SubnetRequest extends Connection
     {
         $result = parent::get("subnets/{$subnet}/slaves/");
 
-        return array_key_exists('data', $result) ? $result['data'] : $result['message'];
+        return self::hasContent($result) ? $result['data'] : $result['message'];
     }
 
     // TODO Return into laravel collection of laravel collection of models
@@ -87,5 +87,17 @@ class SubnetRequest extends Connection
     public function address($subnet, $ip)
     {
         return new IPCollection(parent::get("subnets/{$subnet}/addresses/{$ip}/")['data']);
+    }
+
+    public function create($subnet)
+    {
+        return parent::post("subnets/", $subnet);
+    }
+
+    public function createAndGet($subnet)
+    {
+        $response = $this->create($subnet);
+
+        return array_key_exists('id', $response) ? $this->subnet($response['id']) : null;
     }
 }

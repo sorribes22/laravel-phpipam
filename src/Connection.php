@@ -126,15 +126,20 @@ class Connection
      */
     protected static function request($method, $uri, $payload = [])
     {
-        if (self::getAuthenticatedToken())
+        try {
+            if (self::getAuthenticatedToken()) {
+                return json_decode(self::$client->$method(self::$url . "/" . self::$app . "/" . $uri, [
+                    'headers' => [
+                        'token' => self::$auth_token
+                    ],
+                    'json' => $payload
+                ])->getBody()->getContents(), true);
+            } else throw new PhpIPAMBadCredentials("Invalid username or password.", 401);
+        }
+        catch (\GuzzleHttp\Exception\ClientException $e)
         {
-            return json_decode(self::$client->$method(self::$url."/".self::$app."/".$uri, [
-                'headers' => [
-                    'token' => self::$auth_token
-                ],
-                'json' => $payload
-            ])->getBody()->getContents(), true);
-        } else throw new PhpIPAMBadCredentials("Invalid username or password.", 401);
+            return [];
+        }
     }
 
     /**
@@ -165,5 +170,10 @@ class Connection
         }
 
         return false;
+    }
+
+    protected static function hasContent ($response)
+    {
+        return array_key_exists('data', $response);
     }
 }
