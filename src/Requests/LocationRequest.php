@@ -4,6 +4,7 @@ namespace Axsor\LaravelPhpIPAM\Requests;
 
 
 use Axsor\LaravelPhpIPAM\Connection;
+use Axsor\LaravelPhpIPAM\Models\Locations\LocationCollection;
 use Axsor\LaravelPhpIPAM\Models\Subnets\SubnetCollection;
 
 class LocationRequest extends Connection
@@ -11,6 +12,11 @@ class LocationRequest extends Connection
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function locations()
+    {
+        return new LocationCollection(parent::get("tools/locations/")['data']);
     }
 
     /**

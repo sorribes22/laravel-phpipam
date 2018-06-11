@@ -133,6 +133,11 @@ class PhpIPAM
      *#############################################------ LOCATIONS ------##############################################
      *################################################################################################################*/
 
+    public static function locations()
+    {
+        return (new LocationRequest)->locations();
+    }
+
     public static function subnetLocations($location)
     {
         return (new LocationRequest)->subnets($location);

@@ -133,6 +133,9 @@ PhpIPAM::tags();
 ```
 use Axsor\LaravelPhpIPAM\PhpIPAMFacade as PhpIPAM;
 
+// Get all locations
+PhpIPAM::locations();
+
 // Get all subnets of location
 PhpIPAM::subnetLocations(1);
 
