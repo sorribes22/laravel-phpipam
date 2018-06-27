@@ -3,7 +3,7 @@
 namespace Axsor\LaravelPhpIPAM\Models\Locations;
 
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 class LocationCollection extends Collection
 {

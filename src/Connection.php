@@ -122,24 +122,18 @@ class Connection
      * @param $uri String path added to base url
      * @param array $payload data to post/put/patch
      * @return mixed
-     * @throws PhpIPAMBadCredentials
+     * @throws PhpIPAMBadCredentials|\GuzzleHttp\Exception\ClientException
      */
     protected static function request($method, $uri, $payload = [])
     {
-        try {
-            if (self::getAuthenticatedToken()) {
-                return json_decode(self::$client->$method(self::$url . "/" . self::$app . "/" . $uri, [
-                    'headers' => [
-                        'token' => self::$auth_token
-                    ],
-                    'json' => $payload
-                ])->getBody()->getContents(), true);
-            } else throw new PhpIPAMBadCredentials("Invalid username or password.", 401);
-        }
-        catch (\GuzzleHttp\Exception\ClientException $e)
-        {
-            return [];
-        }
+        if (self::getAuthenticatedToken()) {
+            return json_decode(self::$client->$method(self::$url . "/" . self::$app . "/" . $uri, [
+                'headers' => [
+                    'token' => self::$auth_token
+                ],
+                'json' => $payload
+            ])->getBody()->getContents(), true);
+        } else throw new PhpIPAMBadCredentials("Invalid username or password.", 401);
     }
 
     /**

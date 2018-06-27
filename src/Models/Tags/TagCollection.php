@@ -3,7 +3,7 @@
 namespace Axsor\LaravelPhpIPAM\Models\Tags;
 
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {

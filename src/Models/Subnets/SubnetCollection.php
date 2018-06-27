@@ -3,7 +3,8 @@
 namespace Axsor\LaravelPhpIPAM\Models\Subnets;
 
 
-use Illuminate\Support\Collection;
+
+use Illuminate\Database\Eloquent\Collection;
 
 class SubnetCollection extends Collection
 {

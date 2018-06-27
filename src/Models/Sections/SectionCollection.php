@@ -3,7 +3,8 @@
 namespace Axsor\LaravelPhpIPAM\Models\Sections;
 
 
-use Illuminate\Support\Collection;
+
+use Illuminate\Database\Eloquent\Collection;
 
 class SectionCollection extends Collection
 {
