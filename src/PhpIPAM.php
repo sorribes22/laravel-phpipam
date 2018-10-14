@@ -98,6 +98,16 @@ class PhpIPAM
         return (new IPRequest)->address($ip);
     }
 
+    public static function addressByHostname($hostname)
+    {
+        return (new IPRequest)->byHostname($hostname);
+    }
+
+    public static function searchAddress($ip)
+    {
+        return (new IPRequest)->search($ip);
+    }
+
     public static function ping($ip)
     {
         return (new IPRequest)->ping($ip);

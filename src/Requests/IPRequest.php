@@ -5,6 +5,7 @@ namespace Axsor\LaravelPhpIPAM\Requests;
 
 use Axsor\LaravelPhpIPAM\Connection;
 use Axsor\LaravelPhpIPAM\Models\IPs\IP;
+use Axsor\LaravelPhpIPAM\Models\IPs\IPCollection;
 use Axsor\LaravelPhpIPAM\Models\Subnets\Subnet;
 use Axsor\LaravelPhpIPAM\Models\Tags\TagCollection;
 use Illuminate\Support\Facades\Log;
@@ -25,6 +26,19 @@ class IPRequest extends Connection
     public function address($ip)
     {
         return new IP(parent::get("addresses/{$ip}/")['data']);
+    }
+
+
+    public function byHostname($hostname)
+    {
+        return parent::get("addresses/search_hostname/{$hostname}/");
+    }
+
+    public function search($ip)
+    {
+        $response = parent::get("addresses/search/{$ip}/");
+
+        return array_key_exists('data', $response) ? new IPCollection($response) : null;
     }
 
     /**

@@ -46,7 +46,9 @@ class SubnetRequest extends Connection
      */
     public function firstIPFree($subnet)
     {
-        return parent::get("subnets/{$subnet}/first_free/")['data'];
+        $response = parent::get("subnets/{$subnet}/first_free/");
+
+        return array_key_exists('data', $response) ? $response['data'] : null;
     }
 
 
