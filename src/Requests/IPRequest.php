@@ -38,7 +38,7 @@ class IPRequest extends Connection
     {
         $response = parent::get("addresses/search/{$ip}/");
 
-        return array_key_exists('data', $response) ? new IPCollection($response) : null;
+        return array_key_exists('data', $response) ? new IPCollection($response['data']) : null;
     }
 
     /**
