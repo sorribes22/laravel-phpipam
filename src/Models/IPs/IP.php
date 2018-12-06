@@ -18,7 +18,7 @@ class IP extends Model
         $dataToSend = $this->toArray();
 
         array_forget($dataToSend, [
-            'id', 'ip', 'subnetId', 'deviceId', 'editDate', 'lastSeen', 'is_gateway'
+            'id', 'ip', 'subnetId', 'deviceId', 'editDate', 'lastSeen', 'is_gateway', 'methods', 'links'
         ]);
 
         return (new IPRequest)->edit($this->id, $dataToSend);
