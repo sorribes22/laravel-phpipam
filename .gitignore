@@ -1,2 +1,5 @@
-/vendor
-/.idea
+vendor
+build
+html
+.idea
+composer.lock

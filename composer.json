@@ -1,6 +1,6 @@
 {
     "name": "axsor/laravel-phpipam",
-    "description": "Connection between laravel app and phpipam server",
+    "description": "PhpIPAM wrapper for laravel",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -12,9 +12,17 @@
         "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.3"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    },
     "autoload": {
         "psr-4": {
-            "Axsor\\": "src/"
+            "Axsor\\PhpIPAM\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Axsor\\PhpIPAM\\Tests\\": "tests/"
         }
     },
     "extra": {
