@@ -1,4 +1,7 @@
 # laravel-phpipam
+[![StyleCI](https://travis-ci.org/sorribes22/laravel-phpipam.svg?branch=master)](https://styleci.io/repos/107176775)
+
+
 > Connection between laravel and [PhpIPAM](https://phpipam.net/)
 
 This package is in developement but some functionalities are working yet.
