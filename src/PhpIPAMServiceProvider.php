@@ -9,7 +9,7 @@ class PhpIPAMServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/phpipam.php' => base_path('config/phpipam.php')
+            __DIR__.'/../config/phpipam.php' => base_path('config/phpipam.php'),
         ], 'config');
     }
 
