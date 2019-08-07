@@ -27,6 +27,7 @@ PHPIPAM_PASSWORD=password
 PHPIPAM_APP="phpipam application"
 PHPIPAM_TOKEN="phpipam application token"
 ```
+And run `php artisan config:cache` to reload config cache.
 
 If you want to edit config file, you have to publish it using the next command.
 ```bash

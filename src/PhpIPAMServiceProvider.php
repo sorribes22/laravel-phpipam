@@ -11,6 +11,11 @@ class PhpIPAMServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/phpipam.php' => base_path('config/phpipam.php')
         ], 'config');
+
+        if (file_exists($file = __DIR__.'/helpers.php'))
+        {
+            require_once $file;
+        }
     }
 
     public function register()
