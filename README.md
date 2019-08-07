@@ -7,8 +7,9 @@
 
 
 ## Index
-* [Configuration](#installation)
-* [Config](#config)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [License](#license)
 
 ## Installation
 
@@ -16,11 +17,21 @@
 composer require axsor/laravel-phpipam
 ```
 
-## Config
+## Configuration
+
+Edit your `.env` file and add your **PhpIPAM credentials**:
+```cmake
+PHPIPAM_URL=https://your-phpipam-server/api
+PHPIPAM_USER=username
+PHPIPAM_PASSWORD=password
+PHPIPAM_APP="phpipam application"
+PHPIPAM_TOKEN="phpipam application token"
+```
+
 If you want to edit config file, you have to publish it using the next command.
 ```bash
 php artisan vendor:publish --provider="Axsor\\PhpIPAM\\PhpIPAMServiceProvider" --tag="config"
 ```
 
 ## License
-[GPL-3.0](./LICENSE.md)
+[GPL-3.0](./LICENSE)

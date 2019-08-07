@@ -2,6 +2,6 @@
 
 namespace Axsor\PhpIPAM\Models;
 
-class Ip
+class Address extends Model
 {
 }

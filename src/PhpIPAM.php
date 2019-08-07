@@ -2,27 +2,30 @@
 
 namespace Axsor\PhpIPAM;
 
+use Axsor\PhpIPAM\Http\Controllers\AddressController;
 use GuzzleHttp\Client;
 
 class PhpIPAM
 {
-    const API_ENDPOINT = 'http://phpipam.com/api/app/';
-    protected $client;
+    protected $config;
 
-    public function __construct(Client $client = null)
+    public function __construct(array $config = null)
     {
         //$connector = new Connector();
-        $this->client = $client ?: new Client();
+        $this->config = $config;
     }
+
+    //public function address(int $id)
+    //{
+    //    $response = $this->client->get(self::API_ENDPOINT."addresses/$id/");
+    //
+    //    $address = json_encode($response->getBody()->getContents());
+    //
+    //    return $address;
+    //}
 
     public function address(int $id)
     {
-        $response = $this->client->get(self::API_ENDPOINT."addresses/$id/");
-
-        $address = json_encode($response->getBody()->getContents());
-//echo "\nANTES DEL ECHO\n";
-//echo $address;
-//echo "\nDESPRES DEL ECHO\n";
-        return $address;
+        return (new AddressController($this->config))->show($id);
     }
 }
