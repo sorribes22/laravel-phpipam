@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM\Http\Controllers;
 
-use Axsor\PhpIPAM\Http\Requests\AddressRequest;
+use Axsor\PhpIPAM\Models\Tag;
 use Axsor\PhpIPAM\Models\Address;
 use Axsor\PhpIPAM\Models\CustomField;
-use Axsor\PhpIPAM\Models\Tag;
+use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 
 class AddressController
 {
@@ -50,7 +50,7 @@ class AddressController
     }
 
     /**
-     * The provided hostname must match exactly
+     * The provided hostname must match exactly.
      *
      * @param string $hostname
      * @return \Illuminate\Support\Collection
