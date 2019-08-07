@@ -26,12 +26,12 @@ class AddressRequest extends Connector
 
     public function customFields()
     {
-        return $this->get("addresses/custom_fields");
+        return $this->get('addresses/custom_fields');
     }
 
     public function tags()
     {
-        return $this->get("addresses/tags");
+        return $this->get('addresses/tags');
     }
 
     public function tag(int $id)
