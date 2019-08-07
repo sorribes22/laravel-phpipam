@@ -2,7 +2,7 @@
 
 if (! function_exists('phpipam_response_to_collect')) {
     /**
-     * Return PhpIPAM response content into a collect of the specified class
+     * Return PhpIPAM response content into a collect of the specified class.
      *
      * @param $response
      * @param $class
