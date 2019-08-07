@@ -2,6 +2,10 @@
 
 namespace Axsor\PhpIPAM;
 
+<<<<<<< HEAD
+=======
+use GuzzleHttp\Client;
+>>>>>>> 5d63f247fcfa2553c8d0c407116eee193690d74e
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
 
 class PhpIPAM
