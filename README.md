@@ -8,11 +8,18 @@
 
 ## Index
 * [Configuration](#installation)
+* [Config](#config)
 
 ## Installation
 
 ```bash
 composer require axsor/laravel-phpipam
+```
+
+## Config
+If you want to edit config file, you have to publish it using the next command.
+```bash
+php artisan vendor:publish --provider="Axsor\\PhpIPAM\\PhpIPAMServiceProvider" --tag="config"
 ```
 
 ## License

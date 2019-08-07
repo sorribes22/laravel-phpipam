@@ -9,11 +9,12 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.3"
+        "phpunit/phpunit": "^8.3",
+        "orchestra/testbench": "~3.0"
     },
     "autoload": {
         "psr-4": {
@@ -28,10 +29,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Axsor\\LaravelPhpIPAM\\PhpIPAMServiceProvider"
+                "Axsor\\PhpIPAM\\PhpIPAMServiceProvider"
             ],
             "aliases": {
-                "PhpIPAM": "Axsor\\LaravelPhpIPAM\\PhpIPAMFacade"
+                "PhpIPAM": "Axsor\\PhpIPAM\\Facades\\PhpIPAM"
             }
         }
     }

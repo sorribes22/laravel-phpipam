@@ -1,1 +1,1 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":112:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:1:{s:53:"Axsor\PhpIPAM\Tests\PhpIPAMTest::it_returns_a_address";d:0.01;}}}
+C:37:"PHPUnit\Runner\DefaultTestResultCache":178:{a:2:{s:7:"defects";a:1:{s:53:"Axsor\PhpIPAM\Tests\PhpIPAMTest::it_returns_a_address";i:3;}s:5:"times";a:1:{s:53:"Axsor\PhpIPAM\Tests\PhpIPAMTest::it_returns_a_address";d:0.038;}}}
