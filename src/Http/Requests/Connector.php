@@ -2,9 +2,9 @@
 
 namespace Axsor\PhpIPAM\Http\Requests;
 
-use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
+use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
 
 class Connector
 {
@@ -21,12 +21,12 @@ class Connector
 
     protected function get($uri)
     {
-        return $this->call("GET", $uri);
+        return $this->call('GET', $uri);
     }
 
     protected function post($uri, $payload)
     {
-        return $this->call("POST", $uri, $payload);
+        return $this->call('POST', $uri, $payload);
     }
 
     private function call($method, $uri, $payload = [])
@@ -39,7 +39,7 @@ class Connector
     }
 
     /**
-     * Initializes GuzzleHttp\\Client
+     * Initializes GuzzleHttp\\Client.
      */
     private function instanceClient()
     {
@@ -66,14 +66,14 @@ class Connector
     }
 
     /**
-     * Tries to login into PhpIPAM and stores API token into laravel Cache
+     * Tries to login into PhpIPAM and stores API token into laravel Cache.
      *
      * @return mixed Token to connect to PhpIPAM
      * @throws \Axsor\PhpIPAM\Exceptions\BadCredentialsException
      */
     private function login()
     {
-        $response = (new Client())->post($this->config['url'].'/'.$this->config['app']."/user/", [
+        $response = (new Client())->post($this->config['url'].'/'.$this->config['app'].'/user/', [
             'auth' => [
                 $this->config['user'],
                 $this->config['pass'],

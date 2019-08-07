@@ -22,8 +22,8 @@ class ModelTest extends PhpIPAMTestCase
                     'value4_1_1',
                     'value4_1_2',
                 ],
-                'param4_2' => 'value4_2'
-            ]
+                'param4_2' => 'value4_2',
+            ],
         ];
 
         $address = new Address($data);
