@@ -4,3 +4,5 @@ html
 .idea
 composer.lock
 tmp
+.phpunit.result.cache
+
