@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM\Http\Requests;
 
+use PhpIPAM;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
-use PhpIPAM;
 
 class Connector
 {

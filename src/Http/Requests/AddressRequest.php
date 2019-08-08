@@ -46,7 +46,7 @@ class AddressRequest extends Connector
 
     public function create(array $address)
     {
-        return $this->post("addresses", $address);
+        return $this->post('addresses', $address);
     }
 
     public function update($address, array $newData)

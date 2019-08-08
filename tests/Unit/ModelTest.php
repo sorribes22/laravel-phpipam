@@ -49,8 +49,8 @@ class ModelTest extends PhpIPAMTestCase
             'ip' => '192.168.1.1',
             'subnets' => [
                 'subnet1',
-                'subnet2'
-            ]
+                'subnet2',
+            ],
         ]);
 
         $array = $address->toArray();
@@ -68,9 +68,9 @@ class ModelTest extends PhpIPAMTestCase
             'ip' => '192.168.1.1',
             'subnets' => [
                 'subnet1',
-                'subnet2'
+                'subnet2',
             ],
-            'test' => 'hey!'
+            'test' => 'hey!',
         ]);
 
         $only = $address->only(['ip', 'subnets']);
@@ -87,14 +87,13 @@ class ModelTest extends PhpIPAMTestCase
     /** @test */
     public function can_get_all_parameters_without_specific_ones()
     {
-
         $address = new Address([
             'ip' => '192.168.1.1',
             'subnets' => [
                 'subnet1',
-                'subnet2'
+                'subnet2',
             ],
-            'test' => 'hey!'
+            'test' => 'hey!',
         ]);
 
         $except = $address->except('test');
