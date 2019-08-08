@@ -11,9 +11,9 @@ class AddressController
 {
     protected $request;
 
-    public function __construct(array $config = null)
+    public function __construct()
     {
-        $this->request = new AddressRequest($config);
+        $this->request = new AddressRequest;
     }
 
     /**
@@ -46,7 +46,7 @@ class AddressController
     {
         $response = $this->request->searchIp($ip);
 
-        return phpipam_response_to_collect($response, Address::class);
+        return response_to_collect($response, Address::class);
     }
 
     /**
@@ -59,7 +59,7 @@ class AddressController
     {
         $response = $this->request->searchHostname($hostname);
 
-        return phpipam_response_to_collect($response, Address::class);
+        return response_to_collect($response, Address::class);
     }
 
     /**
@@ -69,16 +69,23 @@ class AddressController
     {
         $response = $this->request->customFields();
 
-        return phpipam_response_to_collect($response, CustomField::class);
+        return response_to_collect($response, CustomField::class);
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function tags()
     {
         $response = $this->request->tags();
 
-        return phpipam_response_to_collect($response, Tag::class);
+        return response_to_collect($response, Tag::class);
     }
 
+    /**
+     * @param int $id
+     * @return \Axsor\PhpIPAM\Models\Tag
+     */
     public function tag(int $id)
     {
         $response = $this->request->tag($id);
@@ -86,10 +93,48 @@ class AddressController
         return new Tag($response['data']);
     }
 
-    public function addressesOfTag(int $id)
+    /**
+     * @param int $id
+     * @return \Illuminate\Support\Collection
+     */
+    public function tagAddresses(int $id)
     {
-        $response = $this->request->addressesOfTag($id);
+        $response = $this->request->tagAddresses($id);
 
-        return phpipam_response_to_collect($response, Address::class);
+        return response_to_collect($response, Address::class);
+    }
+
+    /**
+     * @param array $address
+     * @return mixed
+     */
+    public function create(array $address)
+    {
+        $response = $this->request->create($address);
+
+        return get_id_or_success_status($response);
+    }
+
+    /**
+     * @param $address
+     * @param array $newData
+     * @return mixed
+     */
+    public function update($address, array $newData)
+    {
+        $response = $this->request->update($address, $newData);
+
+        return $response['success'];
+    }
+
+    /**
+     * @param $address
+     * @return mixed
+     */
+    public function drop($address)
+    {
+        $response = $this->request->drop($address);
+
+        return $response['success'];
     }
 }

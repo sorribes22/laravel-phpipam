@@ -5,6 +5,7 @@ namespace Axsor\PhpIPAM\Http\Requests;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
+use PhpIPAM;
 
 class Connector
 {
@@ -12,9 +13,9 @@ class Connector
 
     private $client;
 
-    public function __construct(array $config = null)
+    public function __construct()
     {
-        $this->config = $config ?: config('phpipam');
+        $this->config = PhpIPAM::getConfig() ?: config('phpipam');
 
         $this->instanceClient();
     }
@@ -27,6 +28,16 @@ class Connector
     protected function post($uri, $payload)
     {
         return $this->call('POST', $uri, $payload);
+    }
+
+    protected function patch($uri, $payload)
+    {
+        return $this->call('PATCH', $uri, $payload);
+    }
+
+    protected function delete($uri)
+    {
+        return $this->call('DELETE', $uri);
     }
 
     private function call($method, $uri, $payload = [])
@@ -48,7 +59,7 @@ class Connector
         if (Cache::has('phpipam')) {
             $cachedData = Cache::get('phpipam');
 
-            if ($cachedData['expires'] < date('m-d-Y h:i:s')) {
+            if ($cachedData['expires'] < date('Y-m-d h:i:s')) {
                 $cachedData = null;
             }
         }

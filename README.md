@@ -9,6 +9,7 @@
 ## Index
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [How to use](#how-to-use)
 * [License](#license)
 
 ## Installation
@@ -32,6 +33,34 @@ And run `php artisan config:cache` to reload config cache.
 If you want to edit config file, you have to publish it using the next command.
 ```bash
 php artisan vendor:publish --provider="Axsor\\PhpIPAM\\PhpIPAMServiceProvider" --tag="config"
+```
+
+## How to use
+```php
+use PhpIPAM;
+
+class MyController extends Controller
+{
+    public function ping(Request $request, $addressId)
+    {
+        return PhpIPAM::ping($addressId); // Returns true if address is online
+    }
+    
+    public function address(Request $request, $addressId)
+    {
+        $user = Auth::user();
+        
+        $config = [
+            'url' => env('PHPIPAM_URL'),
+            'user' => $user->phpipam_user,
+            'pass' => $user->phpipam_pass,
+            'app' => env('PHPIPAM_APP'),
+            'token' => env('PHPIPAM_TOKEN'),
+        ];
+        
+        return PhpIPAM::use($config)->address($addressId); // Returns address using custom config
+    }
+}
 ```
 
 ## License

@@ -39,8 +39,27 @@ class AddressRequest extends Connector
         return $this->get("addresses/tags/{$id}");
     }
 
-    public function addressesOfTag(int $id)
+    public function tagAddresses(int $id)
     {
         return $this->get("addresses/tags/{$id}/addresses");
+    }
+
+    public function create(array $address)
+    {
+        return $this->post("addresses", $address);
+    }
+
+    public function update($address, array $newData)
+    {
+        $id = get_id_from_variable($address);
+
+        return $this->patch("addresses/{$id}", standarize_request_body($newData));
+    }
+
+    public function drop($address)
+    {
+        $id = get_id_from_variable($address);
+
+        return $this->delete("addresses/{$id}");
     }
 }
