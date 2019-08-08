@@ -9,7 +9,7 @@ class PhpIPAM
     private $config;
 
     /**
-     * Set custom config to connect to PhpIPAM
+     * Set custom config to connect to PhpIPAM.
      *
      * @param array $config
      * @return $this

@@ -74,7 +74,7 @@ if (! function_exists('get_id_from_variable')) {
     {
         if (is_object($data)) {
             return $data->id;
-        } else if (is_array($data)) {
+        } elseif (is_array($data)) {
             return $data['id'];
         } else {
             return $data;

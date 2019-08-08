@@ -11,11 +11,11 @@ class HelpersTest extends PhpIPAMTestCase
     public function get_id_when_success_its_ok()
     {
         $response = [
-            "code" => 201,
-            "success" => true,
-            "message" => "Address created",
-            "id" => "40481",
-            "time" => 0.037,
+            'code' => 201,
+            'success' => true,
+            'message' => 'Address created',
+            'id' => '40481',
+            'time' => 0.037,
         ];
 
         $this->assertEquals(40481, get_id_or_success_status($response));
@@ -25,10 +25,10 @@ class HelpersTest extends PhpIPAMTestCase
     public function get_false_when_success_its_not_ok()
     {
         $response = [
-            "code" => 500,
-            "success" => false,
-            "message" => "IP address not in selected subnet! (10.0.18.129)",
-            "time" => 0.037,
+            'code' => 500,
+            'success' => false,
+            'message' => 'IP address not in selected subnet! (10.0.18.129)',
+            'time' => 0.037,
         ];
 
         $this->assertEquals(false, get_id_or_success_status($response));
@@ -38,17 +38,17 @@ class HelpersTest extends PhpIPAMTestCase
     public function standardize_booleans_from_array()
     {
         $data = [
-            "id" => "40482",
-            "mac" => "ff:ff:ff:ff:ff:ff",
-            "owner" => "",
-            "tag" => "39",
-            "location" => null,
-            "port" => "",
-            "excludePing" => "\x00",
-            "PTRignore" => "\0",
-            "PTR" => "0",
-            "firewallAddressObject" => null,
-            "custom_USUARIS" => "2",
+            'id' => '40482',
+            'mac' => 'ff:ff:ff:ff:ff:ff',
+            'owner' => '',
+            'tag' => '39',
+            'location' => null,
+            'port' => '',
+            'excludePing' => "\x00",
+            'PTRignore' => "\0",
+            'PTR' => '0',
+            'firewallAddressObject' => null,
+            'custom_USUARIS' => '2',
         ];
 
         $changed = standardize_booleans($data);
@@ -61,29 +61,29 @@ class HelpersTest extends PhpIPAMTestCase
     public function unset_null_values_return_correct_values()
     {
         $data = [
-            "id" => "40482",
-            "mac" => "ff:ff:ff:ff:ff:ff",
-            "owner" => "",
-            "tag" => "39",
-            "location" => null,
-            "port" => "",
-            "excludePing" => "\x00",
-            "PTRignore" => "\0",
-            "PTR" => "0",
-            "firewallAddressObject" => null,
+            'id' => '40482',
+            'mac' => 'ff:ff:ff:ff:ff:ff',
+            'owner' => '',
+            'tag' => '39',
+            'location' => null,
+            'port' => '',
+            'excludePing' => "\x00",
+            'PTRignore' => "\0",
+            'PTR' => '0',
+            'firewallAddressObject' => null,
         ];
 
         $result = unset_null_values($data);
 
         $this->assertEquals($result, [
-            "id" => "40482",
-            "mac" => "ff:ff:ff:ff:ff:ff",
-            "owner" => "",
-            "tag" => "39",
-            "port" => "",
-            "excludePing" => "\x00",
-            "PTRignore" => "\0",
-            "PTR" => "0",
+            'id' => '40482',
+            'mac' => 'ff:ff:ff:ff:ff:ff',
+            'owner' => '',
+            'tag' => '39',
+            'port' => '',
+            'excludePing' => "\x00",
+            'PTRignore' => "\0",
+            'PTR' => '0',
         ]);
     }
 
@@ -91,29 +91,29 @@ class HelpersTest extends PhpIPAMTestCase
     public function standarize_request_body_return_correct_values()
     {
         $data = [
-            "id" => "40482",
-            "mac" => "ff:ff:ff:ff:ff:ff",
-            "owner" => "",
-            "tag" => "39",
-            "location" => null,
-            "port" => "",
-            "excludePing" => "\x00",
-            "PTRignore" => "\0",
-            "PTR" => "0",
-            "firewallAddressObject" => null,
+            'id' => '40482',
+            'mac' => 'ff:ff:ff:ff:ff:ff',
+            'owner' => '',
+            'tag' => '39',
+            'location' => null,
+            'port' => '',
+            'excludePing' => "\x00",
+            'PTRignore' => "\0",
+            'PTR' => '0',
+            'firewallAddressObject' => null,
         ];
 
         $result = standarize_request_body($data);
 
         $this->assertEquals($result, [
-            "id" => "40482",
-            "mac" => "ff:ff:ff:ff:ff:ff",
-            "owner" => "",
-            "tag" => "39",
-            "port" => "",
-            "excludePing" => 0,
-            "PTRignore" => 0,
-            "PTR" => "0",
+            'id' => '40482',
+            'mac' => 'ff:ff:ff:ff:ff:ff',
+            'owner' => '',
+            'tag' => '39',
+            'port' => '',
+            'excludePing' => 0,
+            'PTRignore' => 0,
+            'PTR' => '0',
         ]);
     }
 
