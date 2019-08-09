@@ -2,14 +2,11 @@
 
 namespace Axsor\PhpIPAM\Tests;
 
-use Axsor\PhpIPAM\Facades\PhpIPAM;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Container\Container;
-use Illuminate\Support\Facades\Facade;
-use PHPUnit\Framework\TestCase;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
+use GuzzleHttp\Handler\MockHandler;
 
 class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
 {
@@ -23,12 +20,12 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
     //}
 
     /**
-     * Creates MockHandler with "login" response and initialitzes PhpIPAM with a new Client
+     * Creates MockHandler with "login" response and initialitzes PhpIPAM with a new Client.
      */
     protected function startMocker()
     {
         $this->mock = new MockHandler([
-            new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"2019-08-09 17:09:59"},"time":0.032}')
+            new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"2019-08-09 17:09:59"},"time":0.032}'),
         ]);
 
         $handler = HandlerStack::create($this->mock);
@@ -51,11 +48,11 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('phpipam', [
-            "url" => "https://myphpipam.com/api",
-            "user" => "user",
-            "pass" => "password",
-            "app" => "app",
-            "token" => "token",
+            'url' => 'https://myphpipam.com/api',
+            'user' => 'user',
+            'pass' => 'password',
+            'app' => 'app',
+            'token' => 'token',
         ]);
     }
 }

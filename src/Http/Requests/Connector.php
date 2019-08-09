@@ -3,7 +3,6 @@
 namespace Axsor\PhpIPAM\Http\Requests;
 
 use Axsor\PhpIPAM\Facades\PhpIPAM;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
 
@@ -47,7 +46,7 @@ class Connector
             'json' => $payload,
         ]);
 
-//dd($response->getBody()->getContents());
+        //dd($response->getBody()->getContents());
         return json_decode($response->getBody()->getContents(), true);
     }
 
@@ -91,7 +90,7 @@ class Connector
             ],
             'json' => [],
         ]);
-//dd($response->getBody()->getContents());
+        //dd($response->getBody()->getContents());
 
         if ($response->getStatusCode() != 200) {
             throw new BadCredentialsException();
@@ -100,7 +99,7 @@ class Connector
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
         Cache::put('phpipam', $payload);
-//dd(Cache::get('phpipam'));
+        //dd(Cache::get('phpipam'));
         return $payload['token'];
     }
 }
