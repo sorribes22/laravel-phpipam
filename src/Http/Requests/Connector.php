@@ -2,7 +2,7 @@
 
 namespace Axsor\PhpIPAM\Http\Requests;
 
-use PhpIPAM;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
@@ -11,13 +11,13 @@ class Connector
 {
     private $config;
 
-    private $client;
+    private $headers;
 
     public function __construct()
     {
-        $this->config = PhpIPAM::getConfig() ?: config('phpipam');
+        $this->config = PhpIPAM::getConfig();
 
-        $this->instanceClient();
+        $this->configHeaders();
     }
 
     protected function get($uri)
@@ -42,17 +42,16 @@ class Connector
 
     private function call($method, $uri, $payload = [])
     {
-        $response = $this->client->$method($this->config['url'].'/'.$this->config['app'].'/'.$uri, [
+        $response = PhpIPAM::getClient()->$method($this->config['url'].'/'.$this->config['app'].'/'.$uri, [
+            'headers' => $this->headers,
             'json' => $payload,
         ]);
 
+//dd($response->getBody()->getContents());
         return json_decode($response->getBody()->getContents(), true);
     }
 
-    /**
-     * Initializes GuzzleHttp\\Client.
-     */
-    private function instanceClient()
+    private function configHeaders()
     {
         $cachedData = null;
 
@@ -68,11 +67,9 @@ class Connector
             $token = $this->login();
         }
 
-        $this->client = new Client([
-            'headers' => [
-                'token' => $cachedData ? $cachedData['token'] : $token,
-            ],
-        ]);
+        $this->headers = [
+            'token' => $cachedData ? $cachedData['token'] : $token,
+        ];
         // {"token":"%NCo6dIBMVexgDH2sUCDmDKD","expires":"2019-08-07 17:26:31"}
     }
 
@@ -84,7 +81,7 @@ class Connector
      */
     private function login()
     {
-        $response = (new Client())->post($this->config['url'].'/'.$this->config['app'].'/user/', [
+        $response = PhpIPAM::getClient()->post($this->config['url'].'/'.$this->config['app'].'/user/', [
             'auth' => [
                 $this->config['user'],
                 $this->config['pass'],
@@ -94,14 +91,16 @@ class Connector
             ],
             'json' => [],
         ]);
+//dd($response->getBody()->getContents());
 
         if ($response->getStatusCode() != 200) {
             throw new BadCredentialsException();
         }
+
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
         Cache::put('phpipam', $payload);
-
+//dd(Cache::get('phpipam'));
         return $payload['token'];
     }
 }

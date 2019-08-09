@@ -3,10 +3,20 @@
 namespace Axsor\PhpIPAM;
 
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
+use Axsor\PhpIPAM\Http\Requests\AddressRequest;
+use GuzzleHttp\Client;
 
 class PhpIPAM
 {
     private $config;
+
+    private $client;
+
+    public function __construct()
+    {
+        $this->config = config('phpipam');
+        $this->client = new Client;
+    }
 
     /**
      * Set custom config to connect to PhpIPAM.
@@ -27,11 +37,16 @@ class PhpIPAM
      *
      * @return $this
      */
-    public function useDefault()
+    public function useDefaultConfig()
     {
-        $this->config = null;
+        $this->config = config('phpipam');
 
         return $this;
+    }
+
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
     }
 
     public function getConfig()
@@ -39,13 +54,18 @@ class PhpIPAM
         return $this->config;
     }
 
+    public function getClient()
+    {
+        return $this->client;
+    }
+
     // ADDRESSES CONTROLLER
-    public function address(int $id)
+    public function address($id)
     {
         return (new AddressController)->show($id);
     }
 
-    public function ping(int $id)
+    public function ping($id)
     {
         return (new AddressController)->ping($id);
     }
@@ -93,5 +113,10 @@ class PhpIPAM
     public function addressDrop($address)
     {
         return (new AddressController)->drop($address);
+    }
+
+    public function addressRaw($address)
+    {
+        return (new AddressRequest)->show($address);
     }
 }

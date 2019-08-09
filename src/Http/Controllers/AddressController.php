@@ -20,7 +20,7 @@ class AddressController
      * @param int $id
      * @return \Axsor\PhpIPAM\Models\Address
      */
-    public function show(int $id)
+    public function show($id)
     {
         $response = $this->request->show($id);
 
@@ -31,7 +31,7 @@ class AddressController
      * @param int $id
      * @return bool
      */
-    public function ping(int $id)
+    public function ping($id)
     {
         $response = $this->request->ping($id);
 

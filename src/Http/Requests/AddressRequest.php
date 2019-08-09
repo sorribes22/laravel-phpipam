@@ -4,14 +4,18 @@ namespace Axsor\PhpIPAM\Http\Requests;
 
 class AddressRequest extends Connector
 {
-    public function show(int $id)
+    public function show($address)
     {
-        return $this->get("addresses/{$id}");
+        $address = get_id_from_variable($address);
+
+        return $this->get("addresses/{$address}");
     }
 
-    public function ping(int $id)
+    public function ping($address)
     {
-        return $this->get("addresses/{$id}/ping");
+        $address = get_id_from_variable($address);
+
+        return $this->get("addresses/{$address}/ping");
     }
 
     public function searchIp(string $ip)
