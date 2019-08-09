@@ -140,9 +140,9 @@ class AddressControllerTest extends PhpIPAMTestCase
         $this->assertEquals(get_class($addresses[0]), Address::class);
         $this->assertEquals(22, $addresses[0]->id);
         $this->assertEquals(2, $addresses[0]->subnetId);
-        $this->assertEquals("10.12.1.246", $addresses[0]->ip);
-        $this->assertEquals("The good description", $addresses[0]->description);
-        $this->assertEquals("hostname", $addresses[0]->hostname);
+        $this->assertEquals('10.12.1.246', $addresses[0]->ip);
+        $this->assertEquals('The good description', $addresses[0]->description);
+        $this->assertEquals('hostname', $addresses[0]->hostname);
         $this->assertEquals(2, $addresses[0]->tag);
     }
 
@@ -154,7 +154,7 @@ class AddressControllerTest extends PhpIPAMTestCase
             'ip' => '10.140.128.1',
             'hostname' => 'Router',
             'description' => 'Some description',
-            'subnetId' => 2
+            'subnetId' => 2,
         ];
 
         $id = PhpIPAM::addressCreate($data);

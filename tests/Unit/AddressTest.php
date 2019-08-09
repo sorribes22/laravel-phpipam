@@ -18,7 +18,7 @@ class AddressTest extends PhpIPAMTestCase
         $this->address = new Address([
             'id' => 22,
             'hostname' => 'Router',
-            'description' => 'My address'
+            'description' => 'My address',
         ]);
     }
 
