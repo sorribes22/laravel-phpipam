@@ -27,7 +27,7 @@ class AddressTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"message":"Address deleted","time":0.036}');
 
-        $result = $this->address->delete();
+        $result = $this->address->drop();
 
         $this->assertTrue($result);
     }
@@ -40,7 +40,7 @@ class AddressTest extends PhpIPAMTestCase
         $this->address->hostname = 'Router';
         $this->address->description = 'Some description';
 
-        $result = $this->address->edit();
+        $result = $this->address->update();
 
         $this->assertTrue($result);
     }

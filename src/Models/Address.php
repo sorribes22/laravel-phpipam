@@ -11,12 +11,12 @@ class Address extends Model
         return PhpIPAM::ping($this);
     }
 
-    public function edit()
+    public function update()
     {
         return PhpIPAM::addressUpdate($this, $this->except($this->getExceptKeys()));
     }
 
-    public function delete()
+    public function drop()
     {
         return PhpIPAM::addressDrop($this);
     }
