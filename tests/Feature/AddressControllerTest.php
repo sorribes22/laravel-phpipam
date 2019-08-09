@@ -2,15 +2,12 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
-use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Axsor\PhpIPAM\Models\Address;
-use Axsor\PhpIPAM\Models\CustomField;
 use Axsor\PhpIPAM\Models\Tag;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
+use Axsor\PhpIPAM\Models\Address;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
+use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class AddressControllerTest extends PhpIPAMTestCase
 {
@@ -31,9 +28,9 @@ class AddressControllerTest extends PhpIPAMTestCase
         $this->assertTrue(is_object($address));
         $this->assertEquals($address->id, 22);
         $this->assertEquals($address->subnetId, 2);
-        $this->assertEquals($address->ip, "10.140.202.211");
-        $this->assertEquals($address->description, "description of hostname");
-        $this->assertEquals($address->hostname, "hostname");
+        $this->assertEquals($address->ip, '10.140.202.211');
+        $this->assertEquals($address->description, 'description of hostname');
+        $this->assertEquals($address->hostname, 'hostname');
         $this->assertEquals($address->tag, 18);
     }
 
@@ -64,9 +61,9 @@ class AddressControllerTest extends PhpIPAMTestCase
         $this->assertEquals(get_class($result[0]), Address::class);
         $this->assertEquals(22, $result[0]->id);
         $this->assertEquals(2, $result[0]->subnetId);
-        $this->assertEquals("10.140.128.4", $result[0]->ip);
-        $this->assertEquals("The good description", $result[0]->description);
-        $this->assertEquals("hostname", $result[0]->hostname);
+        $this->assertEquals('10.140.128.4', $result[0]->ip);
+        $this->assertEquals('The good description', $result[0]->description);
+        $this->assertEquals('hostname', $result[0]->hostname);
         $this->assertEquals(43, $result[0]->tag);
     }
 
@@ -75,15 +72,15 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":[{"id":"22","subnetId":"2","ip":"10.140.128.4","is_gateway":null,"description":"The good description","hostname":"hostname","mac":null,"owner":null,"tag":"43","deviceId":null,"location":"1","port":null,"note":"Note","lastSeen":null,"excludePing":null,"PTRignore":null,"PTR":"0","firewallAddressObject":null,"editDate":null}],"time":0.021}');
 
-        $result = PhpIPAM::searchHostname("hostname");
+        $result = PhpIPAM::searchHostname('hostname');
 
         $this->assertEquals(get_class($result), Collection::class);
         $this->assertEquals(get_class($result[0]), Address::class);
         $this->assertEquals(22, $result[0]->id);
         $this->assertEquals(2, $result[0]->subnetId);
-        $this->assertEquals("10.140.128.4", $result[0]->ip);
-        $this->assertEquals("The good description", $result[0]->description);
-        $this->assertEquals("hostname", $result[0]->hostname);
+        $this->assertEquals('10.140.128.4', $result[0]->ip);
+        $this->assertEquals('The good description', $result[0]->description);
+        $this->assertEquals('hostname', $result[0]->hostname);
         $this->assertEquals(43, $result[0]->tag);
     }
 
