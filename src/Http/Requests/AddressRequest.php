@@ -6,16 +6,16 @@ class AddressRequest extends Connector
 {
     public function show($address)
     {
-        $address = get_id_from_variable($address);
+        $id = get_id_from_variable($address);
 
-        return $this->get("addresses/{$address}");
+        return $this->get("addresses/{$id}");
     }
 
     public function ping($address)
     {
-        $address = get_id_from_variable($address);
+        $id = get_id_from_variable($address);
 
-        return $this->get("addresses/{$address}/ping");
+        return $this->get("addresses/{$id}/ping");
     }
 
     public function searchIp(string $ip)
@@ -38,13 +38,17 @@ class AddressRequest extends Connector
         return $this->get('addresses/tags');
     }
 
-    public function tag(int $id)
+    public function tag($tag)
     {
+        $id = get_id_from_variable($tag);
+
         return $this->get("addresses/tags/{$id}");
     }
 
-    public function tagAddresses(int $id)
+    public function tagAddresses($tag)
     {
+        $id = get_id_from_variable($tag);
+
         return $this->get("addresses/tags/{$id}/addresses");
     }
 

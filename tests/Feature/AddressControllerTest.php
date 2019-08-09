@@ -128,4 +128,62 @@ class AddressControllerTest extends PhpIPAMTestCase
         $this->assertEquals('#f59c99', $tag->bgcolor);
         $this->assertEquals('#ffffff', $tag->fgcolor);
     }
+
+    /** @test */
+    public function can_get_tag_addresses()
+    {
+        $this->appendResponse('{"code":200,"success":true,"data":[{"id":"22","subnetId":"2","ip":"10.12.1.246","is_gateway":null,"description":"The good description","hostname":"hostname","mac":null,"owner":null,"tag":"2","deviceId":null,"location":"4","port":null,"note":"note","lastSeen":null,"excludePing":null,"PTRignore":null,"PTR":"0","firewallAddressObject":null,"editDate":null}],"time":0.051}');
+
+        $addresses = PhpIPAM::tagAddresses(2);
+
+        $this->assertEquals(get_class($addresses), Collection::class);
+        $this->assertEquals(get_class($addresses[0]), Address::class);
+        $this->assertEquals(22, $addresses[0]->id);
+        $this->assertEquals(2, $addresses[0]->subnetId);
+        $this->assertEquals("10.12.1.246", $addresses[0]->ip);
+        $this->assertEquals("The good description", $addresses[0]->description);
+        $this->assertEquals("hostname", $addresses[0]->hostname);
+        $this->assertEquals(2, $addresses[0]->tag);
+    }
+
+    /** @test */
+    public function can_create_address()
+    {
+        $this->appendResponse('{"code":201,"success":true,"message":"Address created","id":"22","time":0.034}');
+        $data = [
+            'ip' => '10.140.128.1',
+            'hostname' => 'Router',
+            'description' => 'Some description',
+            'subnetId' => 2
+        ];
+
+        $id = PhpIPAM::addressCreate($data);
+        $this->assertIsInt($id);
+        $this->assertEquals(22, $id);
+    }
+
+    /** @test */
+    public function can_update_address()
+    {
+        $this->appendResponse('{"code":200,"success":true,"message":"Address updated","time":0.02}');
+
+        $data = [
+            'hostname' => 'Router',
+            'description' => 'Some description',
+        ];
+
+        $status = PhpIPAM::addressUpdate(22, $data);
+        $this->assertIsBool($status);
+        $this->assertTrue($status);
+    }
+
+    /** @test */
+    public function can_delete_address()
+    {
+        $this->appendResponse('{"code":200,"success":true,"message":"Address deleted","time":0.036}');
+
+        $status = PhpIPAM::addressDrop(22);
+        $this->assertIsBool($status);
+        $this->assertTrue($status);
+    }
 }

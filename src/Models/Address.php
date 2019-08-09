@@ -2,13 +2,13 @@
 
 namespace Axsor\PhpIPAM\Models;
 
-use PhpIPAM;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 
 class Address extends Model
 {
     public function ping()
     {
-        return PhpIPAM::ping($this->id);
+        return PhpIPAM::ping($this);
     }
 
     public function edit()

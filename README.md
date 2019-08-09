@@ -1,7 +1,8 @@
 # laravel-phpipam
-[![StyleCI](https://travis-ci.org/sorribes22/laravel-phpipam.svg?branch=master)](https://travis-ci.org/sorribes22/laravel-phpipam)
+[![Latest Stable Version](https://poser.pugx.org/axsor/laravel-phpipam/v/stable.png)](https://packagist.org/packages/axsor/laravel-phpipam)
+[![Build Status](https://travis-ci.org/sorribes22/laravel-phpipam.svg?branch=master)](https://travis-ci.org/sorribes22/laravel-phpipam)
 [![StyleCI](https://github.styleci.io/repos/200661780/shield?branch=master)](https://github.styleci.io/repos/200661780)
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sorribes22/laravel-phpipam/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sorribes22/laravel-phpipam/?branch=master)
 
 > [PhpIPAM](https://phpipam.net/) wrapper for laravel
 

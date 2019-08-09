@@ -90,14 +90,14 @@ class PhpIPAM
         return (new AddressController)->tags();
     }
 
-    public function tag(int $id)
+    public function tag($tag)
     {
-        return (new AddressController)->tag($id);
+        return (new AddressController)->tag($tag);
     }
 
-    public function tagAddresses(int $id)
+    public function tagAddresses($tag)
     {
-        return (new AddressController)->tagAddresses($id);
+        return (new AddressController)->tagAddresses($tag);
     }
 
     public function addressCreate(array $address)

@@ -19,6 +19,7 @@ class HelpersTest extends PhpIPAMTestCase
         ];
 
         $this->assertEquals(40481, get_id_or_success_status($response));
+        $this->assertIsInt(get_id_or_success_status($response));
     }
 
     /** @test */

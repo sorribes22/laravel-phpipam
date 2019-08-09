@@ -46,7 +46,6 @@ class Connector
             'json' => $payload,
         ]);
 
-        //dd($response->getBody()->getContents());
         return json_decode($response->getBody()->getContents(), true);
     }
 
@@ -69,7 +68,6 @@ class Connector
         $this->headers = [
             'token' => $cachedData ? $cachedData['token'] : $token,
         ];
-        // {"token":"%NCo6dIBMVexgDH2sUCDmDKD","expires":"2019-08-07 17:26:31"}
     }
 
     /**
@@ -90,7 +88,6 @@ class Connector
             ],
             'json' => [],
         ]);
-        //dd($response->getBody()->getContents());
 
         if ($response->getStatusCode() != 200) {
             throw new BadCredentialsException();
@@ -99,7 +96,7 @@ class Connector
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
         Cache::put('phpipam', $payload);
-        //dd(Cache::get('phpipam'));
+
         return $payload['token'];
     }
 }

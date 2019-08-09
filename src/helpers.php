@@ -25,7 +25,7 @@ if (! function_exists('response_to_collect')) {
 if (! function_exists('get_id_or_success_status')) {
     function get_id_or_success_status($response)
     {
-        return $response['success'] ? $response['id'] : $response['success'];
+        return $response['success'] ? (int) $response['id'] : $response['success'];
     }
 }
 

@@ -14,11 +14,6 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
 
     protected $mock;
 
-    //public function setUp(): void
-    //{
-    //    parent::setUp();
-    //}
-
     /**
      * Creates MockHandler with "login" response and initialitzes PhpIPAM with a new Client.
      */

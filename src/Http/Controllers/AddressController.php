@@ -17,23 +17,23 @@ class AddressController
     }
 
     /**
-     * @param int $id
+     * @param int $address
      * @return \Axsor\PhpIPAM\Models\Address
      */
-    public function show($id)
+    public function show($address)
     {
-        $response = $this->request->show($id);
+        $response = $this->request->show($address);
 
         return new Address($response['data']);
     }
 
     /**
-     * @param int $id
+     * @param int $address
      * @return bool
      */
-    public function ping($id)
+    public function ping($address)
     {
-        $response = $this->request->ping($id);
+        $response = $this->request->ping($address);
 
         return $response['data']['exit_code'] == 0;
     }
@@ -83,23 +83,23 @@ class AddressController
     }
 
     /**
-     * @param int $id
+     * @param int $tag
      * @return \Axsor\PhpIPAM\Models\Tag
      */
-    public function tag(int $id)
+    public function tag($tag)
     {
-        $response = $this->request->tag($id);
+        $response = $this->request->tag($tag);
 
         return new Tag($response['data']);
     }
 
     /**
-     * @param int $id
+     * @param $tag
      * @return \Illuminate\Support\Collection
      */
-    public function tagAddresses(int $id)
+    public function tagAddresses($tag)
     {
-        $response = $this->request->tagAddresses($id);
+        $response = $this->request->tagAddresses($tag);
 
         return response_to_collect($response, Address::class);
     }
