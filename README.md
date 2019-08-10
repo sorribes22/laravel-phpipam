@@ -105,7 +105,6 @@ class MyController extends Controller
 
         // Or
         $address = PhpIPAM::address($addressId);
-
         // Do some actions with address
         $newData = [...];
         PhpIPAM::addressUpdate($address, $newData);
@@ -114,7 +113,7 @@ class MyController extends Controller
 ```
 
 ## Available methods
-All api calls are **wrapped** by the controllers into Models, [Collections](https://laravel.com/docs/collections) or simple data types. If you want to **get the response content without wrapping** you can use the same command adding "Raw" as suffix. ex. `PhpIPAM::addressRaw($address)`. That will return you associative array with the response content.
+All api calls are **wrapped** by the controllers into Models, [Collections](https://laravel.com/docs/collections) or simple data types. If you want to **get the response content without wrapping** you can use the same command adding "Raw" as suffix. ex. `PhpIPAM::addressRaw($address)`. That will return you an associative array with the response content.
 
 The model methods will call Global methods;
 ### Address

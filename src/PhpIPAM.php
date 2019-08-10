@@ -59,15 +59,16 @@ class PhpIPAM
         return $this->client;
     }
 
+    // WRAPPED DATA
     // ADDRESSES CONTROLLER
-    public function address($id)
+    public function address($address)
     {
-        return (new AddressController)->show($id);
+        return (new AddressController)->show($address);
     }
 
-    public function ping($id)
+    public function ping($address)
     {
-        return (new AddressController)->ping($id);
+        return (new AddressController)->ping($address);
     }
 
     public function searchIp(string $ip)
@@ -115,8 +116,60 @@ class PhpIPAM
         return (new AddressController)->drop($address);
     }
 
+    // RAW DATA
+    // ADDRESS REQUEST
     public function addressRaw($address)
     {
         return (new AddressRequest)->show($address);
+    }
+
+    public function pingRaw($address)
+    {
+        return (new AddressRequest)->ping($address);
+    }
+
+    public function searchIpRaw(string $ip)
+    {
+        return (new AddressRequest)->searchIp($ip);
+    }
+
+    public function searchHostnameRaw(string $hostname)
+    {
+        return (new AddressRequest)->searchHostname($hostname);
+    }
+
+    public function customFieldsRaw()
+    {
+        return (new AddressRequest)->customFields();
+    }
+
+    public function tagsRaw()
+    {
+        return (new AddressRequest)->tags();
+    }
+
+    public function tagRaw($tag)
+    {
+        return (new AddressRequest)->tag($tag);
+    }
+
+    public function tagAddressesRaw($tag)
+    {
+        return (new AddressRequest)->tagAddresses($tag);
+    }
+
+    public function addressCreateRaw(array $address)
+    {
+        return (new AddressRequest)->create($address);
+    }
+
+    public function addressUpdateRaw($address, array $newData)
+    {
+        return (new AddressRequest)->update($address, $newData);
+    }
+
+    public function addressDropRaw($address)
+    {
+        return (new AddressRequest)->drop($address);
     }
 }
