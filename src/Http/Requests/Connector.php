@@ -92,7 +92,7 @@ class Connector
         if ($response->getStatusCode() != 200) {
             throw new BadCredentialsException();
         }
-        //dump($response->getBody()->getContents());
+
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
         Cache::set('phpipam', $payload);
