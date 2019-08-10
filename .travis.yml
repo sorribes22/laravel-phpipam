@@ -5,7 +5,7 @@ php:
   - 7.3
 
 before_install:
-  - composer require phpunit/phpunit:4.8.* php-coveralls/php-coveralls:dev-master
+  - composer require php-coveralls/php-coveralls:dev-master
   - composer install --dev
 
 before_script:
