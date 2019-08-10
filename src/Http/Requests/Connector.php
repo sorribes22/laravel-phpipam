@@ -3,8 +3,8 @@
 namespace Axsor\PhpIPAM\Http\Requests;
 
 use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Illuminate\Support\Facades\Cache;
 use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
+use Illuminate\Support\Facades\Cache;
 
 class Connector
 {
@@ -92,10 +92,10 @@ class Connector
         if ($response->getStatusCode() != 200) {
             throw new BadCredentialsException();
         }
-
+//dump($response->getBody()->getContents());
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
-        Cache::put('phpipam', $payload);
+        Cache::set('phpipam', $payload);
 
         return $payload['token'];
     }

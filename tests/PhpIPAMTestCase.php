@@ -19,8 +19,10 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
      */
     protected function startMocker()
     {
+        $expirationDate = date("Y-m-d H:m:s", strtotime('+6 hours'));
+
         $this->mock = new MockHandler([
-            new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"2019-08-09 17:09:59"},"time":0.032}'),
+            new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"'.$expirationDate.'"},"time":0.032}'),
         ]);
 
         $handler = HandlerStack::create($this->mock);

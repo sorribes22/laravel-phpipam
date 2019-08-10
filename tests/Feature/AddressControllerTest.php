@@ -40,6 +40,7 @@ class AddressControllerTest extends PhpIPAMTestCase
         $this->appendResponse('{"code":200,"success":true,"data":{"scan_type":"ping","exit_code":1,"result_code":"OFFLINE","message":"Address offline"},"time":1.022}');
 
         $result = PhpIPAM::ping(22);
+
         $this->assertTrue(is_bool($result));
         $this->assertFalse($result);
 
