@@ -4,16 +4,9 @@ php:
   - 7.2
   - 7.3
 
-before_install:
-  - composer require php-coveralls/php-coveralls
-  - composer install --dev
-
 before_script:
   - travis_retry composer update
   - composer dump-autoload
 
 script:
-  - vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml
-
-after_script:
-  - php vendor/bin/coveralls -v
+  - vendor/bin/phpunit

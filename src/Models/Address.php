@@ -24,6 +24,7 @@ class Address extends Model
     public function getExceptKeys()
     {
         return [
+            'id',
             'ip',
             'subnetId',
             'editDate',

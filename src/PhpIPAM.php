@@ -2,6 +2,7 @@
 
 namespace Axsor\PhpIPAM;
 
+use Axsor\PhpIPAM\Http\Controllers\SectionController;
 use GuzzleHttp\Client;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
@@ -115,6 +116,50 @@ class PhpIPAM
     {
         return (new AddressController)->drop($address);
     }
+
+    // SECTION CONTROLLER
+    public function sections()
+    {
+        return (new SectionController)->index();
+    }
+
+    public function section($section)
+    {
+        return (new SectionController)->show($section);
+    }
+
+    public function sectionSubnets($section)
+    {
+        return (new SectionController)->subnets($section);
+    }
+
+    public function sectionByName(string $section)
+    {
+        return (new SectionController)->byName($section);
+    }
+
+    // TODO upgrade PhpIPAM from 1.3 to 1.5
+    //public function sectionCustomFields()
+    //{
+    //    return (new SectionController)->customFields();
+    //}
+
+    public function sectionCreate(array $section)
+    {
+        return (new SectionController)->create($section);
+    }
+
+    public function sectionUpdate($section, array $newData)
+    {
+        return (new SectionController)->update($section, $newData);
+    }
+
+    public function sectionDrop($section)
+    {
+        return (new SectionController)->drop($section);
+    }
+
+
 
     // RAW DATA
     // ADDRESS REQUEST
