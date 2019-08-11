@@ -6,7 +6,7 @@ class SectionRequest extends Connector
 {
     public function index()
     {
-        return $this->get("sections");
+        return $this->get('sections');
     }
 
     public function show($section)
@@ -36,7 +36,7 @@ class SectionRequest extends Connector
 
     public function create(array $section)
     {
-        return $this->post("sections", $section);
+        return $this->post('sections', $section);
     }
 
     public function update($section, array $newData)

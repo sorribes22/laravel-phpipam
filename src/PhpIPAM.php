@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM;
 
-use Axsor\PhpIPAM\Http\Controllers\SectionController;
 use GuzzleHttp\Client;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
+use Axsor\PhpIPAM\Http\Controllers\SectionController;
 
 class PhpIPAM
 {
@@ -158,8 +158,6 @@ class PhpIPAM
     {
         return (new SectionController)->drop($section);
     }
-
-
 
     // RAW DATA
     // ADDRESS REQUEST
