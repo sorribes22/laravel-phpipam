@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM\Http\Controllers;
 
-use Axsor\PhpIPAM\Http\Requests\SectionRequest;
-use Axsor\PhpIPAM\Models\CustomField;
-use Axsor\PhpIPAM\Models\Section;
 use Axsor\PhpIPAM\Models\Subnet;
+use Axsor\PhpIPAM\Models\Section;
+use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Http\Requests\SectionRequest;
 
 class SectionController
 {
