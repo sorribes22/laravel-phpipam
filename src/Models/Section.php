@@ -16,6 +16,11 @@ class Section extends Model
         return PhpIPAM::sectionUpdate($this, $this->except($this->getExceptKeys()));
     }
 
+    public function subnets()
+    {
+        return PhpIPAM::sectionSubnets($this);
+    }
+
     public function getExceptKeys()
     {
         return [

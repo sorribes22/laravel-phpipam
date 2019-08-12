@@ -138,6 +138,7 @@ PhpIPAM::sectionDrop($section);
 ```php
 $section->update();
 $section->drop();
+$section->subnets();
 ```
 
 ### Subnet
