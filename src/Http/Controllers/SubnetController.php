@@ -2,11 +2,11 @@
 
 namespace Axsor\PhpIPAM\Http\Controllers;
 
-use Axsor\PhpIPAM\Http\Requests\SubnetRequest;
-use Axsor\PhpIPAM\Models\Address;
-use Axsor\PhpIPAM\Models\CustomField;
 use Axsor\PhpIPAM\Models\Data;
 use Axsor\PhpIPAM\Models\Subnet;
+use Axsor\PhpIPAM\Models\Address;
+use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Http\Requests\SubnetRequest;
 
 class SubnetController
 {
