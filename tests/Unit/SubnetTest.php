@@ -4,8 +4,8 @@ namespace Axsor\PhpIPAM\Tests\Unit;
 
 use Axsor\PhpIPAM\Models\Data;
 use Axsor\PhpIPAM\Models\Subnet;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class SubnetTest extends PhpIPAMTestCase
 {
@@ -89,9 +89,9 @@ class SubnetTest extends PhpIPAMTestCase
         $slaves = $this->subnet->slaves();
 
         $this->assertEquals(get_class($slaves), Collection::class);
-        $this->assertEquals("192.168.1.0", $slaves[0]->subnet);
-        $this->assertEquals("24", $slaves[0]->mask);
-        $this->assertEquals("LAN", $slaves[0]->description);
+        $this->assertEquals('192.168.1.0', $slaves[0]->subnet);
+        $this->assertEquals('24', $slaves[0]->mask);
+        $this->assertEquals('LAN', $slaves[0]->description);
 
         $this->appendResponse('{"code":200,"success":0,"message":"No slaves","time":0.017}');
 
@@ -99,7 +99,6 @@ class SubnetTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($slaves), Collection::class);
         $this->assertEquals(0, $slaves->count());
-
     }
 
     /** @test */
@@ -111,9 +110,9 @@ class SubnetTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($slaves), Collection::class);
         $this->assertEquals(1, $slaves->count());
-        $this->assertEquals("192.168.1.0", $slaves[0]->subnet);
-        $this->assertEquals("24", $slaves[0]->mask);
-        $this->assertEquals("LAN", $slaves[0]->description);
+        $this->assertEquals('192.168.1.0', $slaves[0]->subnet);
+        $this->assertEquals('24', $slaves[0]->mask);
+        $this->assertEquals('LAN', $slaves[0]->description);
     }
 
     /** @test */
@@ -125,9 +124,9 @@ class SubnetTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($addresses), Collection::class);
         $this->assertEquals(1, $addresses->count());
-        $this->assertEquals("192.168.1.4", $addresses[0]->ip);
-        $this->assertEquals("Hostname", $addresses[0]->hostname);
-        $this->assertEquals("Description", $addresses[0]->description);
+        $this->assertEquals('192.168.1.4', $addresses[0]->ip);
+        $this->assertEquals('Hostname', $addresses[0]->hostname);
+        $this->assertEquals('Description', $addresses[0]->description);
     }
 
     /** @test */
@@ -139,9 +138,9 @@ class SubnetTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($addresses), Collection::class);
         $this->assertEquals(1, $addresses->count());
-        $this->assertEquals("192.168.1.4", $addresses[0]->ip);
-        $this->assertEquals("Hostname", $addresses[0]->hostname);
-        $this->assertEquals("Description", $addresses[0]->description);
+        $this->assertEquals('192.168.1.4', $addresses[0]->ip);
+        $this->assertEquals('Hostname', $addresses[0]->hostname);
+        $this->assertEquals('Description', $addresses[0]->description);
 
         $this->appendResponse('{"code":200,"success":0,"message":"No addresses found","time":0.008}');
 
@@ -180,7 +179,7 @@ class SubnetTest extends PhpIPAMTestCase
         $this->assertIsObject($response);
         $this->assertEquals(get_class($response), Collection::class);
         $this->assertEquals($response->count(), 8);
-        $this->assertTrue(in_array("192.168.1.0/27", $response->toArray()));
+        $this->assertTrue(in_array('192.168.1.0/27', $response->toArray()));
     }
 
     /** @test */
