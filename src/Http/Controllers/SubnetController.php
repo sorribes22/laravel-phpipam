@@ -112,34 +112,34 @@ class SubnetController
     {
         $response = $this->request->update($subnet, $newData);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 
     public function resize($subnet, int $mask)
     {
         $response = $this->request->resize($subnet, $mask);
 
-        return (boolean) $response;
+        return (bool) $response;
     }
 
     public function split($subnet, int $number)
     {
         $response = $this->request->split($subnet, $number);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 
     public function drop($subnet)
     {
         $response = $this->request->drop($subnet);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 
     public function truncate($subnet)
     {
         $response = $this->request->truncate($subnet);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 }

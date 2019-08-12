@@ -231,10 +231,10 @@ class SubnetControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":201,"success":true,"message":"Subnet created","id":"22","data":"192.168.3.0\/24","time":0.035}');
 
-        $response = PhpIPAM::subnetCreate([ [
-            "subnet" => "192.168.3.0",
-            "sectionId" => 15,
-            "mask" => 24,
+        $response = PhpIPAM::subnetCreate([[
+            'subnet' => '192.168.3.0',
+            'sectionId' => 15,
+            'mask' => 24,
         ]]);
 
         $this->assertEquals($response, 22);
@@ -246,7 +246,7 @@ class SubnetControllerTest extends PhpIPAMTestCase
         $this->appendResponse('{"code":201,"success":true,"message":"Subnet created","id":"23","data":"192.168.1.128\/25","time":0.036}');
 
         $response = PhpIPAM::subnetCreateInSubnet(22, [
-            "mask" => 25,
+            'mask' => 25,
         ]);
 
         $this->assertEquals($response, 23);
@@ -258,7 +258,7 @@ class SubnetControllerTest extends PhpIPAMTestCase
         $this->appendResponse('{"code":200,"success":true,"message":"Subnet updated","time":0.018}');
 
         $response = PhpIPAM::subnetUpdate(22, [
-            "description" => 'Test description',
+            'description' => 'Test description',
         ]);
 
         $this->assertIsBool($response);

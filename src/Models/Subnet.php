@@ -6,7 +6,6 @@ use Axsor\PhpIPAM\Facades\PhpIPAM;
 
 class Subnet extends Model
 {
-
     public function update()
     {
         return PhpIPAM::subnetUpdate($this, $this->except($this->getExceptKeys()));

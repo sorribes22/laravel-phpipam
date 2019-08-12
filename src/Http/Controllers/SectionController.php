@@ -63,13 +63,13 @@ class SectionController
     {
         $response = $this->request->update($section, $newData);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 
     public function drop($section)
     {
         $response = $this->request->drop($section);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 }
