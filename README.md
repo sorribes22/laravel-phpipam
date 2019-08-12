@@ -116,14 +116,32 @@ class MyController extends Controller
 All api calls are **wrapped** by the controllers into Models, [Collections](https://laravel.com/docs/collections) or simple data types. If you want to **get the response content without wrapping** you can use the same command adding "Raw" as suffix. ex. `PhpIPAM::addressRaw($address)`. That will return you an associative array with the response content.
 
 The model methods will call Global methods;
+### Section
+#### Global methods
+```php
+PhpIPAM::sections();
+PhpIPAM::section($section);
+PhpIPAM::sectionSubnets($section);
+PhpIPAM::sectionByName($section);
+PhpIPAM::sectionCreate($section);
+PhpIPAM::sectionUpdate($section, $newData);
+PhpIPAM::sectionDrop($section);
+```
+
+#### Model methods
+```php
+$section->update();
+$section->drop();
+```
+
 ### Address
 #### Global methods
 ```php
 PhpIPAM::address($address);
 PhpIPAM::ping($address);
-PhpIPAM::searchIp("10.140.128.1");
-PhpIPAM::searchHostname("phpipam.net");
-PhpIPAM::customFields();
+PhpIPAM::addressByIp("10.140.128.1");
+PhpIPAM::addressByHostname("phpipam.net");
+PhpIPAM::addressCustomFields();
 PhpIPAM::tags();
 PhpIPAM::tag($tag);
 PhpIPAM::tagAddresses($tag);

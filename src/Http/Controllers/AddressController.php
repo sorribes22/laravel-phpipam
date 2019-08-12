@@ -42,9 +42,9 @@ class AddressController
      * @param string $ip
      * @return \Illuminate\Support\Collection
      */
-    public function searchIp(string $ip)
+    public function byIp(string $ip)
     {
-        $response = $this->request->searchIp($ip);
+        $response = $this->request->byIp($ip);
 
         return response_to_collect($response, Address::class);
     }
@@ -55,9 +55,9 @@ class AddressController
      * @param string $hostname
      * @return \Illuminate\Support\Collection
      */
-    public function searchHostname(string $hostname)
+    public function byHostname(string $hostname)
     {
-        $response = $this->request->searchHostname($hostname);
+        $response = $this->request->byHostname($hostname);
 
         return response_to_collect($response, Address::class);
     }

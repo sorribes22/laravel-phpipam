@@ -73,17 +73,17 @@ class PhpIPAM
         return (new AddressController)->ping($address);
     }
 
-    public function searchIp(string $ip)
+    public function addressByIp(string $ip)
     {
-        return (new AddressController)->searchIp($ip);
+        return (new AddressController)->byIp($ip);
     }
 
-    public function searchHostname(string $hostname)
+    public function addressByHostname(string $hostname)
     {
-        return (new AddressController)->searchHostname($hostname);
+        return (new AddressController)->byHostname($hostname);
     }
 
-    public function customFields()
+    public function addressCustomFields()
     {
         return (new AddressController)->customFields();
     }
@@ -230,12 +230,12 @@ class PhpIPAM
 
     public function searchIpRaw(string $ip)
     {
-        return (new AddressRequest)->searchIp($ip);
+        return (new AddressRequest)->byIp($ip);
     }
 
     public function searchHostnameRaw(string $hostname)
     {
-        return (new AddressRequest)->searchHostname($hostname);
+        return (new AddressRequest)->byHostname($hostname);
     }
 
     public function customFieldsRaw()

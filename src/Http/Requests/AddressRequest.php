@@ -18,12 +18,12 @@ class AddressRequest extends Connector
         return $this->get("addresses/{$id}/ping");
     }
 
-    public function searchIp(string $ip)
+    public function byIp(string $ip)
     {
         return $this->get("addresses/search/{$ip}");
     }
 
-    public function searchHostname(string $hostname)
+    public function byHostname(string $hostname)
     {
         return $this->get("addresses/search_hostname/{$hostname}");
     }

@@ -56,7 +56,7 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":[{"id":"22","subnetId":"2","ip":"10.140.128.4","is_gateway":null,"description":"The good description","hostname":"hostname","mac":null,"owner":null,"tag":"43","deviceId":null,"location":"1","port":null,"note":"Note","lastSeen":null,"excludePing":null,"PTRignore":null,"PTR":"0","firewallAddressObject":null,"editDate":null}],"time":0.021}');
 
-        $result = PhpIPAM::searchIp(22);
+        $result = PhpIPAM::addressByIp(22);
 
         $this->assertEquals(get_class($result), Collection::class);
         $this->assertEquals(get_class($result[0]), Address::class);
@@ -73,7 +73,7 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":[{"id":"22","subnetId":"2","ip":"10.140.128.4","is_gateway":null,"description":"The good description","hostname":"hostname","mac":null,"owner":null,"tag":"43","deviceId":null,"location":"1","port":null,"note":"Note","lastSeen":null,"excludePing":null,"PTRignore":null,"PTR":"0","firewallAddressObject":null,"editDate":null}],"time":0.021}');
 
-        $result = PhpIPAM::searchHostname('hostname');
+        $result = PhpIPAM::addressByHostname('hostname');
 
         $this->assertEquals(get_class($result), Collection::class);
         $this->assertEquals(get_class($result[0]), Address::class);
@@ -90,7 +90,7 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":{"custom_X":{"name":"custom_X","type":"varchar(40)","Comment":"","Null":"YES","Default":null},"custom_Y":{"name":"custom_Y","type":"varchar(40)","Comment":"","Null":"YES","Default":null}},"time":0.018}');
 
-        $result = PhpIPAM::customFields();
+        $result = PhpIPAM::addressCustomFields();
 
         $this->assertEquals(get_class($result), Collection::class);
         $this->assertEquals(get_class($result[0]), CustomField::class);
