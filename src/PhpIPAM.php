@@ -227,49 +227,4 @@ class PhpIPAM
     {
         return (new AddressRequest)->ping($address);
     }
-
-    public function searchIpRaw(string $ip)
-    {
-        return (new AddressRequest)->byIp($ip);
-    }
-
-    public function searchHostnameRaw(string $hostname)
-    {
-        return (new AddressRequest)->byHostname($hostname);
-    }
-
-    public function customFieldsRaw()
-    {
-        return (new AddressRequest)->customFields();
-    }
-
-    public function tagsRaw()
-    {
-        return (new AddressRequest)->tags();
-    }
-
-    public function tagRaw($tag)
-    {
-        return (new AddressRequest)->tag($tag);
-    }
-
-    public function tagAddressesRaw($tag)
-    {
-        return (new AddressRequest)->tagAddresses($tag);
-    }
-
-    public function addressCreateRaw(array $address)
-    {
-        return (new AddressRequest)->create($address);
-    }
-
-    public function addressUpdateRaw($address, array $newData)
-    {
-        return (new AddressRequest)->update($address, $newData);
-    }
-
-    public function addressDropRaw($address)
-    {
-        return (new AddressRequest)->drop($address);
-    }
 }
