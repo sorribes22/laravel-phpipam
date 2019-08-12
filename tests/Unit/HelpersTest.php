@@ -3,8 +3,8 @@
 namespace Axsor\PhpIPAM\Tests\Unit;
 
 use Axsor\PhpIPAM\Models\Address;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class HelpersTest extends PhpIPAMTestCase
 {
@@ -168,16 +168,15 @@ class HelpersTest extends PhpIPAMTestCase
     {
         $response = [
             'data' =>  [
-                "192.168.1.0/27",
-                "192.168.1.32/27",
-                "192.168.1.64/27",
-                "192.168.1.96/27",
-                "192.168.1.128/27",
-                "192.168.1.160/27",
-                "192.168.1.192/27",
-                "192.168.1.224/27",
-            ]
-            ,
+                '192.168.1.0/27',
+                '192.168.1.32/27',
+                '192.168.1.64/27',
+                '192.168.1.96/27',
+                '192.168.1.128/27',
+                '192.168.1.160/27',
+                '192.168.1.192/27',
+                '192.168.1.224/27',
+            ],
         ];
 
         $result = response_to_collect($response);
