@@ -69,7 +69,7 @@ class SubnetRequest extends Connector
 
     public function customFields()
     {
-        return $this->get("subnets/custom_fields");
+        return $this->get('subnets/custom_fields');
     }
 
     public function byCidr(string $cidr)

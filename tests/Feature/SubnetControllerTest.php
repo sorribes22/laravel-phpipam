@@ -2,12 +2,12 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
-use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Axsor\PhpIPAM\Models\CustomField;
 use Axsor\PhpIPAM\Models\Data;
 use Axsor\PhpIPAM\Models\Subnet;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class SubnetControllerTest extends PhpIPAMTestCase
 {
@@ -32,7 +32,7 @@ class SubnetControllerTest extends PhpIPAMTestCase
         $this->assertEquals('192.168.1.0', $subnet->subnet);
         $this->assertEquals('192.168.1.0', $subnet->calculation->Network);
         $this->assertEquals('192.168.1.0', $subnet->calculation->Network);
-        $this->assertEquals('0.0.0.255', $subnet->calculation->{"Subnet wildcard"});
+        $this->assertEquals('0.0.0.255', $subnet->calculation->{'Subnet wildcard'});
     }
 
     /** @test */
@@ -80,9 +80,9 @@ class SubnetControllerTest extends PhpIPAMTestCase
         $slaves = PhpIPAM::subnetSlaves(2);
 
         $this->assertEquals(get_class($slaves), Collection::class);
-        $this->assertEquals("192.168.1.0", $slaves[0]->subnet);
-        $this->assertEquals("24", $slaves[0]->mask);
-        $this->assertEquals("LAN", $slaves[0]->description);
+        $this->assertEquals('192.168.1.0', $slaves[0]->subnet);
+        $this->assertEquals('24', $slaves[0]->mask);
+        $this->assertEquals('LAN', $slaves[0]->description);
     }
 
     /** @test */
@@ -105,9 +105,9 @@ class SubnetControllerTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($slaves), Collection::class);
         $this->assertEquals(1, $slaves->count());
-        $this->assertEquals("192.168.1.0", $slaves[0]->subnet);
-        $this->assertEquals("24", $slaves[0]->mask);
-        $this->assertEquals("LAN", $slaves[0]->description);
+        $this->assertEquals('192.168.1.0', $slaves[0]->subnet);
+        $this->assertEquals('24', $slaves[0]->mask);
+        $this->assertEquals('LAN', $slaves[0]->description);
     }
 
     /** @test */
@@ -119,9 +119,9 @@ class SubnetControllerTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($addresses), Collection::class);
         $this->assertEquals(1, $addresses->count());
-        $this->assertEquals("192.168.1.4", $addresses[0]->ip);
-        $this->assertEquals("Hostname", $addresses[0]->hostname);
-        $this->assertEquals("Description", $addresses[0]->description);
+        $this->assertEquals('192.168.1.4', $addresses[0]->ip);
+        $this->assertEquals('Hostname', $addresses[0]->hostname);
+        $this->assertEquals('Description', $addresses[0]->description);
     }
 
     /** @test */
@@ -133,9 +133,9 @@ class SubnetControllerTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($addresses), Collection::class);
         $this->assertEquals(1, $addresses->count());
-        $this->assertEquals("192.168.1.4", $addresses[0]->ip);
-        $this->assertEquals("Hostname", $addresses[0]->hostname);
-        $this->assertEquals("Description", $addresses[0]->description);
+        $this->assertEquals('192.168.1.4', $addresses[0]->ip);
+        $this->assertEquals('Hostname', $addresses[0]->hostname);
+        $this->assertEquals('Description', $addresses[0]->description);
     }
 
     /** @test */
@@ -182,7 +182,7 @@ class SubnetControllerTest extends PhpIPAMTestCase
         $this->assertIsObject($response);
         $this->assertEquals(get_class($response), Collection::class);
         $this->assertEquals($response->count(), 8);
-        $this->assertTrue(in_array("192.168.1.0/27", $response->toArray()));
+        $this->assertTrue(in_array('192.168.1.0/27', $response->toArray()));
     }
 
     /** @test */
@@ -216,7 +216,7 @@ class SubnetControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":[{"id":"22","subnet":"192.168.1.0","mask":"24","sectionId":"15","description":"Prova developement","linked_subnet":null,"firewallAddressObject":null,"vrfId":"0","masterSubnetId":"0","allowRequests":"0","vlanId":"0","showName":"0","device":"0","permissions":"{\"3\":\"2\"}","pingSubnet":"0","discoverSubnet":"0","resolveDNS":"0","DNSrecursive":"0","DNSrecords":"0","nameserverId":"1","scanAgent":"0","isFolder":"0","isFull":"0","tag":"2","threshold":"0","location":"14","editDate":null,"lastScan":null,"lastDiscovery":null}],"time":0.008}');
 
-        $response = PhpIPAM::subnetByCidr("192.168.1.0/24");
+        $response = PhpIPAM::subnetByCidr('192.168.1.0/24');
 
         $this->assertIsObject($response);
         $this->assertEquals(get_class($response), Collection::class);
