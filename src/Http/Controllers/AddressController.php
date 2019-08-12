@@ -124,7 +124,7 @@ class AddressController
     {
         $response = $this->request->update($address, $newData);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 
     /**
@@ -135,6 +135,6 @@ class AddressController
     {
         $response = $this->request->drop($address);
 
-        return (boolean) $response['success'];
+        return (bool) $response['success'];
     }
 }

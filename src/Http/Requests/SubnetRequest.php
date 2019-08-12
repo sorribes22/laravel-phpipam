@@ -79,7 +79,7 @@ class SubnetRequest extends Connector
 
     public function create(array $data)
     {
-        return $this->post("subnets", $data);
+        return $this->post('subnets', $data);
     }
 
     public function createInSubnet($subnet, array $data)
