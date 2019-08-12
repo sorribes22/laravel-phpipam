@@ -159,7 +159,6 @@ class AddressControllerTest extends PhpIPAMTestCase
         ];
 
         $id = PhpIPAM::addressCreate($data);
-        $this->assertIsInt($id);
         $this->assertEquals(22, $id);
     }
 

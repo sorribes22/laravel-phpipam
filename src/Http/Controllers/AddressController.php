@@ -112,7 +112,7 @@ class AddressController
     {
         $response = $this->request->create($address);
 
-        return get_id_or_success_status($response);
+        return get_key_or_null($response, 'id');
     }
 
     /**

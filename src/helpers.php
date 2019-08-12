@@ -6,15 +6,16 @@ if (! function_exists('response_to_collect')) {
      *
      * @param $response
      * @param $class
+     * @param string $key
      * @return \Illuminate\Support\Collection
      */
-    function response_to_collect($response, $class)
+    function response_to_collect($response, $class = null, $key = 'data')
     {
         $collection = collect();
 
-        if (array_key_exists('data', $response)) {
-            foreach ($response['data'] as $item) {
-                $collection->push(new $class($item));
+        if (array_key_exists($key, $response)) {
+            foreach ($response[$key] as $item) {
+                $collection->push($class ? new $class($item) : $item);
             }
         }
 
@@ -22,10 +23,10 @@ if (! function_exists('response_to_collect')) {
     }
 }
 
-if (! function_exists('get_id_or_success_status')) {
-    function get_id_or_success_status($response)
+if (! function_exists('get_key_or_null')) {
+    function get_key_or_null($response, $key = 'data')
     {
-        return $response['success'] ? (int) $response['id'] : $response['success'];
+        return $response['success'] ? $response[$key] : null;
     }
 }
 

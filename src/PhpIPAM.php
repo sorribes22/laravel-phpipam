@@ -3,6 +3,7 @@
 namespace Axsor\PhpIPAM;
 
 use Axsor\PhpIPAM\Http\Controllers\SectionController;
+use Axsor\PhpIPAM\Http\Controllers\SubnetController;
 use GuzzleHttp\Client;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
@@ -159,7 +160,61 @@ class PhpIPAM
         return (new SectionController)->drop($section);
     }
 
+    // SUBNET CONTROLLER
+    public function subnet($subnet)
+    {
+        return (new SubnetController)->show($subnet);
+    }
 
+    public function subnetUsage($subnet)
+    {
+        return (new SubnetController)->usage($subnet);
+    }
+
+    public function subnetFreeAddress($subnet)
+    {
+        return (new SubnetController)->freeAddress($subnet);
+    }
+
+    public function subnetSlaves($subnet)
+    {
+        return (new SubnetController)->slaves($subnet);
+    }
+
+    public function subnetSlavesRecursive($subnet)
+    {
+        return (new SubnetController)->slavesRecursive($subnet);
+    }
+
+    public function subnetAddresses($subnet)
+    {
+        return (new SubnetController)->addresses($subnet);
+    }
+
+    public function subnetIp($subnet, string $ip)
+    {
+        return (new SubnetController)->ip($subnet, $ip);
+    }
+
+    public function subnetFreeSubnet($subnet, int $mask)
+    {
+        return (new SubnetController)->freeSubnet($subnet, $mask);
+    }
+
+    public function subnetFreeSubnets($subnet, int $mask)
+    {
+        return (new SubnetController)->freeSubnets($subnet, $mask);
+    }
+
+    public function subnetCustomFields()
+    {
+        return (new SubnetController)->customFields();
+    }
+
+    public function subnetByCidr(string $cidr)
+    {
+        return (new SubnetController)->byCidr($cidr);
+    }
 
     // RAW DATA
     // ADDRESS REQUEST

@@ -95,7 +95,6 @@ class SectionControllerTest extends PhpIPAMTestCase
 
         $result = PhpIPAM::sectionCreate(['name' => 'My section', 'description' => 'LAN Subnets']);
 
-        $this->assertIsInt($result);
         $this->assertEquals(2, $result);
     }
 

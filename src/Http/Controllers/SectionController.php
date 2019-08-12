@@ -56,7 +56,7 @@ class SectionController
     {
         $response = $this->request->create($section);
 
-        return get_id_or_success_status($response);
+        return get_key_or_null($response, 'id');
     }
 
     public function update($section, array $newData)
