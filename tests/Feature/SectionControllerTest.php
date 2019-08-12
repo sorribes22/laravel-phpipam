@@ -2,12 +2,12 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
-use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Axsor\PhpIPAM\Models\CustomField;
-use Axsor\PhpIPAM\Models\Section;
 use Axsor\PhpIPAM\Models\Subnet;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Axsor\PhpIPAM\Models\Section;
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class SectionControllerTest extends PhpIPAMTestCase
 {
@@ -28,7 +28,7 @@ class SectionControllerTest extends PhpIPAMTestCase
         $this->assertEquals(get_class($sections), Collection::class);
         $this->assertEquals(get_class($sections[0]), Section::class);
         $this->assertEquals(1, $sections[0]->id);
-        $this->assertEquals("My section", $sections[0]->name);
+        $this->assertEquals('My section', $sections[0]->name);
         $this->assertEquals('Section', $sections[0]->description);
     }
 
@@ -41,7 +41,7 @@ class SectionControllerTest extends PhpIPAMTestCase
 
         $this->assertEquals(get_class($section), Section::class);
         $this->assertEquals(1, $section->id);
-        $this->assertEquals("My section", $section->name);
+        $this->assertEquals('My section', $section->name);
         $this->assertEquals('Section', $section->description);
     }
 
@@ -64,7 +64,7 @@ class SectionControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":{"id":"1","name":"My section","description":"My awesome section","masterSection":"0","permissions":"{\"3\":\"2\"}","strictMode":"1","subnetOrdering":"default","order":"1","editDate":"2018-08-06 15:33:47","showVLAN":"0","showVRF":"0","showSupernetOnly":"0","DNS":null},"time":0.007}');
 
-        $section = PhpIPAM::sectionByName("My section");
+        $section = PhpIPAM::sectionByName('My section');
 
         $this->assertEquals(get_class($section), Section::class);
         $this->assertEquals(1, $section->id);
