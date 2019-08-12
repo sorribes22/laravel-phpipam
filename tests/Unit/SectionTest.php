@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM\Tests\Unit;
 
-use Axsor\PhpIPAM\Models\Section;
 use Axsor\PhpIPAM\Models\Subnet;
-use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Axsor\PhpIPAM\Models\Section;
 use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class SectionTest extends PhpIPAMTestCase
 {
