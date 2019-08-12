@@ -7,8 +7,8 @@
 
 > [PhpIPAM](https://phpipam.net/) wrapper for laravel
 
-Atention: Lastest stable version is from [this repository](https://github.com/E-Ports/laravel-phpipam).
-Actual developement is not finished yet and posted to [packagist](https://packagist.org/packages/axsor/laravel-phpipam).
+Attention: Lastest stable version is from [this repository](https://github.com/E-Ports/laravel-phpipam).
+Actual developement is not finished and posted to [packagist](https://packagist.org/packages/axsor/laravel-phpipam) yet.
 
 ## Index
 * [Installation](#installation)
@@ -68,6 +68,8 @@ PhpIPAM::useDefaultConfig(); // Discard custom configuration and uses default co
 ```
 
 ## How to use
+Object parameters nomenclature and data type must agree on [PhpPIAM API Documentation](https://phpipam.net/api/api_documentation/).
+
 Most of methods returns Models (Address, Subnet, ...), [Collections](https://laravel.com/docs/collections) of models
 or action results as boolean ('created', 'updated', ...).
 
@@ -136,6 +138,46 @@ PhpIPAM::sectionDrop($section);
 ```php
 $section->update();
 $section->drop();
+```
+
+### Subnet
+#### Global methods
+```php
+PhpIPAM::subnet($subnet);
+PhpIPAM::subnetUsage($subnet);
+PhpIPAM::subnetFreeAddress($subnet);
+PhpIPAM::subnetSlaves($subnet);
+PhpIPAM::subnetSlavesRecursive($subnet);
+PhpIPAM::subnetAddresses($subnet);
+PhpIPAM::subnetIp($subnet, "192.168.1.4");
+PhpIPAM::subnetFreeSubnet($subnet, $mask);
+PhpIPAM::subnetFreeSubnets($subnet, $mask);
+PhpIPAM::subnetCustomFields();
+PhpIPAM::subnetByCidr("192.168.1.0/24");
+PhpIPAM::subnetCreate($subnetData);
+PhpIPAM::subnetCreateInSubnet($subnet, $subnetData);
+PhpIPAM::subnetUpdate($subnet, $subnetData);
+PhpIPAM::subnetResize($subnet, $mask);
+PhpIPAM::subnetSplit($subnet, $number);
+PhpIPAM::subnetDrop($subnet);
+PhpIPAM::subnetTruncate($subnet);
+```
+
+#### Model methods
+```php
+$subnet->update();
+$subnet->drop();
+$subnet->usage();
+$subnet->freeAddress();
+$subnet->slaves();
+$subnet->slavesRecursive();
+$subnet->addresses();
+$subnet->ip("192.168.168.4");
+$subnet->freeSubnet($mask);
+$subnet->freeSubnet($mask);
+$subnet->resize($mask);
+$subnet->split($number);
+$subnet->truncate();
 ```
 
 ### Address

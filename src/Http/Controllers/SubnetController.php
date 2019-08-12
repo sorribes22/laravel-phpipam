@@ -93,4 +93,53 @@ class SubnetController
 
         return response_to_collect($response, Subnet::class);
     }
+
+    public function create(array $data)
+    {
+        $response = $this->request->create($data);
+
+        return get_key_or_null($response, 'id');
+    }
+
+    public function createInSubnet($subnet, array $data)
+    {
+        $response = $this->request->createInSubnet($subnet, $data);
+
+        return get_key_or_null($response, 'id');
+    }
+
+    public function update($subnet, array $newData)
+    {
+        $response = $this->request->update($subnet, $newData);
+
+        return (boolean) $response['success'];
+    }
+
+    public function resize($subnet, int $mask)
+    {
+        $response = $this->request->resize($subnet, $mask);
+
+        return (boolean) $response;
+    }
+
+    public function split($subnet, int $number)
+    {
+        $response = $this->request->split($subnet, $number);
+
+        return (boolean) $response['success'];
+    }
+
+    public function drop($subnet)
+    {
+        $response = $this->request->drop($subnet);
+
+        return (boolean) $response['success'];
+    }
+
+    public function truncate($subnet)
+    {
+        $response = $this->request->truncate($subnet);
+
+        return (boolean) $response['success'];
+    }
 }

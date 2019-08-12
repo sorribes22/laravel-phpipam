@@ -216,6 +216,43 @@ class PhpIPAM
         return (new SubnetController)->byCidr($cidr);
     }
 
+    public function subnetCreate(array $data)
+    {
+        return (new SubnetController)->create($data);
+    }
+
+    public function subnetCreateInSubnet($subnet, array $data)
+    {
+        return (new SubnetController)->createInSubnet($subnet, $data);
+    }
+
+    public function subnetUpdate($subnet, array $newData)
+    {
+        return (new SubnetController)->update($subnet, $newData);
+    }
+
+    public function subnetResize($subnet, int $mask)
+    {
+        return (new SubnetController)->resize($subnet, $mask);
+    }
+
+    public function subnetSplit($subnet, int $number)
+    {
+        return (new SubnetController)->split($subnet, $number);
+    }
+
+    public function subnetDrop($subnet)
+    {
+        return (new SubnetController)->drop($subnet);
+    }
+
+    public function subnetTruncate($subnet)
+    {
+        return (new SubnetController)->truncate($subnet);
+    }
+
+    // TODO subnet permissions (PATCH & DELETE)
+
     // RAW DATA
     // ADDRESS REQUEST
     public function addressRaw($address)

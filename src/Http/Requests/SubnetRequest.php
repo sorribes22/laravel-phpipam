@@ -76,4 +76,51 @@ class SubnetRequest extends Connector
     {
         return $this->get("subnets/cidr/{$cidr}");
     }
+
+    public function create(array $data)
+    {
+        return $this->post("subnets", $data);
+    }
+
+    public function createInSubnet($subnet, array $data)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->post("subnets/{$id}/first_subnet/{$data['mask']}/", $data);
+    }
+
+    public function update($subnet, array $newData)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->patch("subnets/{$id}/", $newData);
+    }
+
+    public function resize($subnet, int $mask)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->patch("subnets/{$id}/resize", ['mask' => $mask]);
+    }
+
+    public function split($subnet, int $number)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->patch("subnets/{$id}/split", ['number' => $number]);
+    }
+
+    public function drop($subnet)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->delete("subnets/{$id}");
+    }
+
+    public function truncate($subnet)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->delete("subnets/{$id}/truncate");
+    }
 }
