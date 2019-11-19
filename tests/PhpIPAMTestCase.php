@@ -2,11 +2,11 @@
 
 namespace Axsor\PhpIPAM\Tests;
 
+use Axsor\PhpIPAM\Facades\PhpIPAM;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Axsor\PhpIPAM\Facades\PhpIPAM;
-use GuzzleHttp\Handler\MockHandler;
 
 class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
 {

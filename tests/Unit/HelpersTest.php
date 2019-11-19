@@ -3,8 +3,8 @@
 namespace Axsor\PhpIPAM\Tests\Unit;
 
 use Axsor\PhpIPAM\Models\Address;
-use Illuminate\Support\Collection;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Illuminate\Support\Collection;
 
 class HelpersTest extends PhpIPAMTestCase
 {
