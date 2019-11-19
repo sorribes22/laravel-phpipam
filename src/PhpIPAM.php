@@ -2,6 +2,7 @@
 
 namespace Axsor\PhpIPAM;
 
+use Axsor\PhpIPAM\Http\Controllers\ToolController;
 use GuzzleHttp\Client;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use Axsor\PhpIPAM\Http\Controllers\SubnetController;
@@ -252,6 +253,31 @@ class PhpIPAM
     }
 
     // TODO subnet permissions (PATCH & DELETE)
+
+    public function locations()
+    {
+        return (new ToolController)->locations();
+    }
+
+    public function location($location)
+    {
+        return (new ToolController)->location($location);
+    }
+
+    public function locationCreate(array $location)
+    {
+        return (new ToolController)->locationCreate($location);
+    }
+
+    public function locationUpdate($location, array $newData)
+    {
+        return (new ToolController)->locationUpdate($location, $newData);
+    }
+
+    public function locationDrop($location)
+    {
+        return (new ToolController)->locationDrop($location);
+    }
 
     // RAW DATA
     // ADDRESS REQUEST

@@ -204,5 +204,22 @@ $address->drop();
 $address->ping();
 ```
 
+### Tools
+#### Global methods
+```php
+PhpIPAM::locations();
+PhpIPAM::location($location);
+PhpIPAM::locationCreate($location);
+PhpIPAM::locationUpdate($location, $newData);
+PhpIPAM::locationDrop($location);
+```
+
+#### Model methods
+```php
+$location->update();
+$location->drop();
+```
+
+
 ## License
 [GPL-3.0](./LICENSE)
