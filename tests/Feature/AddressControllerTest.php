@@ -2,12 +2,12 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
-use Axsor\PhpIPAM\Models\Tag;
-use Axsor\PhpIPAM\Models\Address;
 use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Illuminate\Support\Collection;
+use Axsor\PhpIPAM\Models\Address;
 use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Models\Tag;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Illuminate\Support\Collection;
 
 class AddressControllerTest extends PhpIPAMTestCase
 {

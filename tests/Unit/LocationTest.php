@@ -4,7 +4,6 @@ namespace Axsor\PhpIPAM\Tests\Unit;
 
 use Axsor\PhpIPAM\Models\Location;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
-use Illuminate\Support\Collection;
 
 class LocationTest extends PhpIPAMTestCase
 {

@@ -2,9 +2,9 @@
 
 namespace Axsor\PhpIPAM\Http\Requests;
 
+use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
 use Axsor\PhpIPAM\Facades\PhpIPAM;
 use Illuminate\Support\Facades\Cache;
-use Axsor\PhpIPAM\Exceptions\BadCredentialsException;
 
 class Connector
 {

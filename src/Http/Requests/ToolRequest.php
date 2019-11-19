@@ -18,7 +18,7 @@ class ToolRequest extends Connector
 
     public function locationCreate(array $location)
     {
-        return $this->post("tools/locations", $location);
+        return $this->post('tools/locations', $location);
     }
 
     public function locationUpdate($location, array $newData)

@@ -4,8 +4,8 @@ namespace Axsor\PhpIPAM\Tests\Unit;
 
 use Axsor\PhpIPAM\Models\Data;
 use Axsor\PhpIPAM\Models\Subnet;
-use Illuminate\Support\Collection;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Illuminate\Support\Collection;
 
 class SubnetTest extends PhpIPAMTestCase
 {

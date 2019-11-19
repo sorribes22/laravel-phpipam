@@ -2,12 +2,8 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
-use Axsor\PhpIPAM\Models\Location;
-use Axsor\PhpIPAM\Models\Tag;
-use Axsor\PhpIPAM\Models\Address;
 use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Illuminate\Support\Collection;
-use Axsor\PhpIPAM\Models\CustomField;
+use Axsor\PhpIPAM\Models\Location;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
 
 class ToolControllerTest extends PhpIPAMTestCase
@@ -28,7 +24,7 @@ class ToolControllerTest extends PhpIPAMTestCase
 
         $this->assertTrue(is_object($locations));
         $this->assertEquals($locations->first()->id, 1);
-        $this->assertEquals($locations->first()->name, "Barcelona");
+        $this->assertEquals($locations->first()->name, 'Barcelona');
         $this->assertEquals($locations->first()->description, null);
         $this->assertEquals($locations->first()->address, null);
         $this->assertEquals($locations->first()->lat, null);
@@ -45,7 +41,7 @@ class ToolControllerTest extends PhpIPAMTestCase
         $this->assertTrue(is_object($location));
         $this->assertEquals(get_class($location), Location::class);
         $this->assertEquals($location->id, 1);
-        $this->assertEquals($location->name, "Barcelona");
+        $this->assertEquals($location->name, 'Barcelona');
         $this->assertEquals($location->description, null);
         $this->assertEquals($location->address, null);
         $this->assertEquals($location->lat, null);

@@ -2,12 +2,12 @@
 
 namespace Axsor\PhpIPAM\Tests\Feature;
 
+use Axsor\PhpIPAM\Facades\PhpIPAM;
+use Axsor\PhpIPAM\Models\CustomField;
 use Axsor\PhpIPAM\Models\Data;
 use Axsor\PhpIPAM\Models\Subnet;
-use Axsor\PhpIPAM\Facades\PhpIPAM;
-use Illuminate\Support\Collection;
-use Axsor\PhpIPAM\Models\CustomField;
 use Axsor\PhpIPAM\Tests\PhpIPAMTestCase;
+use Illuminate\Support\Collection;
 
 class SubnetControllerTest extends PhpIPAMTestCase
 {

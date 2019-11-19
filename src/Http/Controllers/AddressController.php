@@ -2,10 +2,10 @@
 
 namespace Axsor\PhpIPAM\Http\Controllers;
 
-use Axsor\PhpIPAM\Models\Tag;
+use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use Axsor\PhpIPAM\Models\Address;
 use Axsor\PhpIPAM\Models\CustomField;
-use Axsor\PhpIPAM\Http\Requests\AddressRequest;
+use Axsor\PhpIPAM\Models\Tag;
 
 class AddressController
 {
