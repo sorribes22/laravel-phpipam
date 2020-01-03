@@ -42,6 +42,7 @@ PHPIPAM_USER=username
 PHPIPAM_PASSWORD=password
 PHPIPAM_APP="phpipam application"
 PHPIPAM_TOKEN="phpipam application token"
+PHPIPAM_VERIFY_CERT=false    # Optional (Default: true)
 ```
 And run `php artisan config:cache` to reload config cache.
 
@@ -57,7 +58,8 @@ $config = [
     'user' => 'alex',
     'pass' => 'secure',
     'app' => 'api-client',
-    'token' => 'my_awesome_token'
+    'token' => 'my_awesome_token',
+    'verify_cert' => false
 ];
 
 PhpIPAM::use($config)->address(22); // Sets custom configuration before execute method

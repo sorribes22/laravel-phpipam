@@ -45,7 +45,7 @@ class Connector
             'headers' => $this->headers,
             'json' => $payload,
         ]);
-        //dump($response->getBody()->getContents());
+
         return json_decode($response->getBody()->getContents(), true);
     }
 

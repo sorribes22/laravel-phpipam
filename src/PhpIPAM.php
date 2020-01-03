@@ -18,7 +18,8 @@ class PhpIPAM
     public function __construct()
     {
         $this->config = config('phpipam');
-        $this->client = new Client;
+
+        $this->client = new Client(['verify' => $this->config['verify_cert']]);
     }
 
     /**

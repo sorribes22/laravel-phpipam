@@ -6,4 +6,5 @@ return [
     'pass' => env('PHPIPAM_PASSWORD'),
     'app' => env('PHPIPAM_APP'),
     'token' => env('PHPIPAM_TOKEN'),
+    'verify_cert' => env('PHPIPAM_VERIFY_CERT', true),
 ];
