@@ -11,15 +11,50 @@ use GuzzleHttp\Client;
 
 class PhpIPAM
 {
+    private $connection = 'default';
+
     private $config;
 
     private $client;
 
     public function __construct()
     {
-        $this->config = config('phpipam');
+        $this->resetConfig();
 
         $this->client = new Client(['verify' => $this->config['verify_cert']]);
+    }
+
+    /**
+     * Change phpipam server we want to connect to
+     * @param $connection
+     * @return $this
+     */
+    public function connect($connection)
+    {
+        $this->connection = $connection;
+
+        return $this->resetConfig();
+    }
+
+    /**
+     * Reset phpipam connection to default
+     * @return $this
+     */
+    public function resetConnection()
+    {
+        $this->connection = 'default';
+
+        return $this->resetConfig();
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    public function getCacheKey()
+    {
+        return 'phpipam-' . $this->connection;
     }
 
     /**
@@ -28,7 +63,7 @@ class PhpIPAM
      * @param array $config
      * @return $this
      */
-    public function use(array $config)
+    public function setConfig(array $config)
     {
         $this->config = $config;
 
@@ -41,9 +76,9 @@ class PhpIPAM
      *
      * @return $this
      */
-    public function useDefaultConfig()
+    public function resetConfig()
     {
-        $this->config = config('phpipam');
+        $this->config = config('phpipam')[$this->connection];
 
         return $this;
     }

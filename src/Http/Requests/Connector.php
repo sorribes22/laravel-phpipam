@@ -53,10 +53,10 @@ class Connector
     {
         $cachedData = null;
 
-        if (Cache::has('phpipam')) {
-            $cachedData = Cache::get('phpipam');
+        if (Cache::has(PhpIPAM::getCacheKey())) {
+            $cachedData = Cache::get(PhpIPAM::getCacheKey());
 
-            if ($cachedData['expires'] < date('Y-m-d h:i:s')) {
+            if ($cachedData['expires'] <= date('Y-m-d h:i:s')) {
                 $cachedData = null;
             }
         }
@@ -95,7 +95,7 @@ class Connector
 
         $payload = json_decode($response->getBody()->getContents(), true)['data'];
 
-        Cache::set('phpipam', $payload);
+        Cache::set(PhpIPAM::getCacheKey(), $payload);
 
         return $payload['token'];
     }

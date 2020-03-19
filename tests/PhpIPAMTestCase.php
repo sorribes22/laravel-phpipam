@@ -45,12 +45,14 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('phpipam', [
-            'url' => 'https://myphpipam.com/api',
-            'user' => 'user',
-            'pass' => 'password',
-            'app' => 'app',
-            'token' => 'token',
-            'verify_cert' => true,
+            'default' => [
+                'url' => 'https://myphpipam.com/api',
+                'user' => 'user',
+                'pass' => 'password',
+                'app' => 'app',
+                'token' => 'token',
+                'verify_cert' => true,
+            ]
         ]);
     }
 }

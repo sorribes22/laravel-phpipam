@@ -118,6 +118,18 @@ class MyController extends Controller
 }
 ```
 
+## Connections
+You can set multiple instances of PhpIPAM.
+
+```
+PhpIPAM::tags(); // Return tags from 'default' phpipam instance
+
+PhpIPAM::connect('second_instance')->tags(); // Return tags from 'second_instance' phpipam instance
+PhpIPAM::tags(); // Return tags from 'second_instance' phpipam instance
+
+PhpIPAM::resetConnection()->tags(); // Return tags from 'default' phpipam instance
+```
+
 ## Available methods
 All api calls are **wrapped** by the controllers into Models, [Collections](https://laravel.com/docs/collections) or simple data types.
 
