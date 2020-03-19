@@ -25,7 +25,7 @@ class PhpIPAM
     }
 
     /**
-     * Change phpipam server we want to connect to
+     * Change phpipam server we want to connect to.
      * @param $connection
      * @return $this
      */
@@ -37,7 +37,7 @@ class PhpIPAM
     }
 
     /**
-     * Reset phpipam connection to default
+     * Reset phpipam connection to default.
      * @return $this
      */
     public function resetConnection()
@@ -54,7 +54,7 @@ class PhpIPAM
 
     public function getCacheKey()
     {
-        return 'phpipam-' . $this->connection;
+        return 'phpipam-'.$this->connection;
     }
 
     /**

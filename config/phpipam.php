@@ -10,7 +10,6 @@ return [
         'verify_cert' => env('PHPIPAM_VERIFY_CERT', true),
     ],
 
-
     //'second_connection' => [
     //    'url' => env('PHPIPAM_2_URL'),
     //    'user' => env('PHPIPAM_2_USER'),

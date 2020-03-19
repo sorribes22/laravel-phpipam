@@ -52,7 +52,7 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
                 'app' => 'app',
                 'token' => 'token',
                 'verify_cert' => true,
-            ]
+            ],
         ]);
     }
 }
