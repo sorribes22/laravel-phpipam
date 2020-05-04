@@ -90,10 +90,10 @@ class ToolControllerTest extends PhpIPAMTestCase
         $this->assertEquals($tag->first()->id, 1);
         $this->assertEquals($tag->first()->type, 'Offline');
         $this->assertEquals($tag->first()->showtag, 1);
-        $this->assertEquals($tag->first()->bgcolor, "#f59c99");
-        $this->assertEquals($tag->first()->fgcolor, "#ffffff");
-        $this->assertEquals($tag->first()->compress, "No");
-        $this->assertEquals($tag->first()->locked, "Yes");
+        $this->assertEquals($tag->first()->bgcolor, '#f59c99');
+        $this->assertEquals($tag->first()->fgcolor, '#ffffff');
+        $this->assertEquals($tag->first()->compress, 'No');
+        $this->assertEquals($tag->first()->locked, 'Yes');
         $this->assertEquals($tag->first()->updateTag, 1);
     }
 
@@ -109,10 +109,10 @@ class ToolControllerTest extends PhpIPAMTestCase
         $this->assertEquals($tag->id, 1);
         $this->assertEquals($tag->type, 'Offline');
         $this->assertEquals($tag->showtag, 1);
-        $this->assertEquals($tag->bgcolor, "#f59c99");
-        $this->assertEquals($tag->fgcolor, "#ffffff");
-        $this->assertEquals($tag->compress, "No");
-        $this->assertEquals($tag->locked, "Yes");
+        $this->assertEquals($tag->bgcolor, '#f59c99');
+        $this->assertEquals($tag->fgcolor, '#ffffff');
+        $this->assertEquals($tag->compress, 'No');
+        $this->assertEquals($tag->locked, 'Yes');
         $this->assertEquals($tag->updateTag, 1);
     }
 
