@@ -257,6 +257,9 @@ PhpIPAM::tagDrop($tag);
 ```php
 $location->update();
 $location->drop();
+
+$tag->update();
+$tag->drop();
 ```
 
 
