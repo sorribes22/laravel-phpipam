@@ -105,7 +105,7 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":[{"id":"1","type":"Offline","showtag":"1","bgcolor":"#f59c99","fgcolor":"#ffffff","compress":"No","locked":"Yes","updateTag":"1"},{"id":"2","type":"Used","showtag":"0","bgcolor":"#a9c9a4","fgcolor":"#ffffff","compress":"No","locked":"Yes","updateTag":"1"}],"time":0.005}');
 
-        $result = PhpIPAM::tags();
+        $result = PhpIPAM::addressTags();
 
         $this->assertEquals(get_class($result), Collection::class);
         $this->assertEquals(get_class($result[0]), Tag::class);
@@ -120,7 +120,7 @@ class AddressControllerTest extends PhpIPAMTestCase
     {
         $this->appendResponse('{"code":200,"success":true,"data":{"id":"1","type":"Offline","showtag":"1","bgcolor":"#f59c99","fgcolor":"#ffffff","compress":"No","locked":"Yes","updateTag":"1"},"time":0.005}');
 
-        $tag = PhpIPAM::tag(1);
+        $tag = PhpIPAM::addressTag(1);
 
         $this->assertEquals(get_class($tag), Tag::class);
         $this->assertEquals(1, $tag->id);

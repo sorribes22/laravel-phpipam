@@ -4,6 +4,7 @@ namespace Axsor\PhpIPAM\Http\Controllers;
 
 use Axsor\PhpIPAM\Http\Requests\ToolRequest;
 use Axsor\PhpIPAM\Models\Location;
+use Axsor\PhpIPAM\Models\Tag;
 
 class ToolController
 {
@@ -45,6 +46,41 @@ class ToolController
     public function locationDrop($location)
     {
         $response = $this->request->locationDrop($location);
+
+        return (bool) $response['success'];
+    }
+
+    public function tags()
+    {
+        $response = $this->request->tags();
+
+        return response_to_collect($response, Tag::class);
+    }
+
+    public function tag($tag)
+    {
+        $response = $this->request->tag($tag);
+
+        return new Tag($response['data']);
+    }
+
+    public function tagCreate(array $tag)
+    {
+        $response = $this->request->tagCreate($tag);
+
+        return get_key_or_null($response, 'id');
+    }
+
+    public function tagUpdate($tag, array $newData)
+    {
+        $response = $this->request->tagUpdate($tag, $newData);
+
+        return (bool) $response['success'];
+    }
+
+    public function tagDrop($tag)
+    {
+        $response = $this->request->tagDrop($tag);
 
         return (bool) $response['success'];
     }

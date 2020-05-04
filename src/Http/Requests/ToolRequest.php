@@ -34,4 +34,35 @@ class ToolRequest extends Connector
 
         return $this->delete("tools/locations/{$id}");
     }
+
+    public function tags()
+    {
+        return $this->get('tools/tags');
+    }
+
+    public function tag($tag)
+    {
+        $id = get_id_from_variable($tag);
+
+        return $this->get("tools/tags/{$id}");
+    }
+
+    public function tagCreate(array $tag)
+    {
+        return $this->post('tools/tags', $tag);
+    }
+
+    public function tagUpdate($tag, array $newData)
+    {
+        $id = get_id_from_variable($tag);
+
+        return $this->patch("tools/tags/{$id}", $newData);
+    }
+
+    public function tagDrop($tag)
+    {
+        $id = get_id_from_variable($tag);
+
+        return $this->delete("tools/tags/{$id}");
+    }
 }

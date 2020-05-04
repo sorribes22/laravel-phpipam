@@ -46,7 +46,26 @@ PHPIPAM_VERIFY_CERT=false    # Optional (Default: true)
 ```
 And run `php artisan config:cache` to reload config cache.
 
-If you want to edit config file, you have to publish it using the next command.
+If you want to use **different PhpIPAM connections**, you have to publish the config file using the next command and configure as connections as you want:
+```
+'default' => [
+    'url' => env('PHPIPAM_URL'),
+    'user' => env('PHPIPAM_USER'),
+    'pass' => env('PHPIPAM_PASSWORD'),
+    'app' => env('PHPIPAM_APP'),
+    'token' => env('PHPIPAM_TOKEN'),
+    'verify_cert' => env('PHPIPAM_VERIFY_CERT', true),
+],
+
+'second_connection' => [
+    'url' => env('PHPIPAM_2_URL'),
+    'user' => env('PHPIPAM_2_USER'),
+    'pass' => env('PHPIPAM_2_PASSWORD'),
+    'app' => env('PHPIPAM_2_APP'),
+    'token' => env('PHPIPAM_2_TOKEN'),
+    'verify_cert' => env('PHPIPAM_2_VERIFY_CERT', true),
+],
+```
 
 `php artisan vendor:publish --provider="Axsor\\PhpIPAM\\PhpIPAMServiceProvider" --tag="config"
 `
@@ -55,7 +74,7 @@ If in some moment you want to use other different configuration you can set it:
 ```php
 $config = [
     'url' => 'https://phpipam.net/api',
-    'user' => 'alex',
+    'user' => 'axsor',
     'pass' => 'secure',
     'app' => 'api-client',
     'token' => 'my_awesome_token',
@@ -98,13 +117,13 @@ class MyController extends Controller
         return PhpIPAM::use($config)->address($addressId); // Returns address using custom config
     }
 
-    public function addressEdit(Request $request, $addressId)
+    public function addressUpdate(Request $request, $addressId)
     {
         $address = PhpIPAM::address($addressId);
 
         $address->hostname = 'New Hostname';
 
-        $address->edit();
+        $address->update();
 
         // Or
         PhpIPAM::addressUpdate($addressId);
@@ -203,8 +222,8 @@ PhpIPAM::ping($address);
 PhpIPAM::addressByIp("10.140.128.1");
 PhpIPAM::addressByHostname("phpipam.net");
 PhpIPAM::addressCustomFields();
-PhpIPAM::tags();
-PhpIPAM::tag($tag);
+PhpIPAM::addressTags();
+PhpIPAM::addressTag($tag);
 PhpIPAM::tagAddresses($tag);
 PhpIPAM::addressCreate($data);
 PhpIPAM::addressUpdate($address, $data);
@@ -226,6 +245,12 @@ PhpIPAM::location($location);
 PhpIPAM::locationCreate($location);
 PhpIPAM::locationUpdate($location, $newData);
 PhpIPAM::locationDrop($location);
+
+PhpIPAM::tags();
+PhpIPAM::tag($tag);
+PhpIPAM::tagCreate($tag);
+PhpIPAM::tagUpdate($tag, $newData);
+PhpIPAM::tagDrop($tag);
 ```
 
 #### Model methods

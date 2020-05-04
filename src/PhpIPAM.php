@@ -20,8 +20,6 @@ class PhpIPAM
     public function __construct()
     {
         $this->resetConfig();
-
-        $this->client = new Client(['verify' => $this->config['verify_cert']]);
     }
 
     /**
@@ -80,6 +78,8 @@ class PhpIPAM
     {
         $this->config = config('phpipam')[$this->connection];
 
+        $this->client = new Client(['verify' => $this->config['verify_cert']]);
+
         return $this;
     }
 
@@ -125,12 +125,12 @@ class PhpIPAM
         return (new AddressController)->customFields();
     }
 
-    public function tags()
+    public function addressTags()
     {
         return (new AddressController)->tags();
     }
 
-    public function tag($tag)
+    public function addressTag($tag)
     {
         return (new AddressController)->tag($tag);
     }
@@ -313,6 +313,31 @@ class PhpIPAM
     public function locationDrop($location)
     {
         return (new ToolController)->locationDrop($location);
+    }
+
+    public function tags()
+    {
+        return (new ToolController)->tags();
+    }
+
+    public function tag($tag)
+    {
+        return (new ToolController)->tag($tag);
+    }
+
+    public function tagCreate(array $tag)
+    {
+        return (new ToolController)->tagCreate($tag);
+    }
+
+    public function tagUpdate($tag, array $newData)
+    {
+        return (new ToolController)->tagUpdate($tag, $newData);
+    }
+
+    public function tagDrop($tag)
+    {
+        return (new ToolController)->tagDrop($tag);
     }
 
     // RAW DATA
