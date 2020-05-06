@@ -19,6 +19,8 @@ class PhpIPAM
 
     public function __construct()
     {
+        $this->client = new Client();
+
         $this->resetConfig();
     }
 
@@ -65,6 +67,8 @@ class PhpIPAM
     {
         $this->config = $config;
 
+        $this->reconfigClient();
+
         return $this;
     }
 
@@ -78,7 +82,7 @@ class PhpIPAM
     {
         $this->config = config('phpipam')[$this->connection];
 
-        $this->client = new Client(['verify' => $this->config['verify_cert']]);
+        $this->reconfigClient();
 
         return $this;
     }
@@ -86,6 +90,13 @@ class PhpIPAM
     public function setClient(Client $client)
     {
         $this->client = $client;
+    }
+
+    private function reconfigClient()
+    {
+        if (is_object($this->client) && $this->client instanceof Client) {
+            $this->client = new Client(['verify' => $this->config['verify_cert']]);
+        }
     }
 
     public function getConfig()
