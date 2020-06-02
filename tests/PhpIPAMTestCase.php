@@ -12,6 +12,9 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
 {
     protected $client;
 
+    /**
+     * @var \GuzzleHttp\Handler\MockHandler
+     */
     protected $mock;
 
     /**
@@ -19,11 +22,9 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
      */
     protected function startMocker()
     {
-        $expirationDate = date('Y-m-d H:m:s', strtotime('+6 hours'));
+        $this->mock = new MockHandler();
 
-        $this->mock = new MockHandler([
-            new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"'.$expirationDate.'"},"time":0.032}'),
-        ]);
+        $this->appendLoginResponse();
 
         $handler = HandlerStack::create($this->mock);
 
@@ -35,6 +36,18 @@ class PhpIPAMTestCase extends \Orchestra\Testbench\TestCase
     public function appendResponse(string $response)
     {
         $this->mock->append(new Response(200, [], $response));
+    }
+
+    public function appendLoginResponse()
+    {
+        $this->mock->append($this->getLoginResponse());
+    }
+
+    public function getLoginResponse()
+    {
+        $expirationDate = date('Y-m-d H:m:s', strtotime('+6 hours'));
+
+        return new Response(200, [], '{"code":200,"success":true,"data":{"token":"EmME%jz+HQSiR0z+qJIJ+$cP","expires":"'.$expirationDate.'"},"time":0.032}');
     }
 
     protected function getPackageProviders($app)

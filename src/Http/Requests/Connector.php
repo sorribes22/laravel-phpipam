@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Cache;
 
 class Connector
 {
+    const SUCCESS_CODE = 200;
+    const UNAUTHORIZED_CODE = 401;
+
     private $config;
 
     private $headers;
@@ -39,14 +42,24 @@ class Connector
         return $this->call('DELETE', $uri);
     }
 
-    private function call($method, $uri, $payload = [])
+    private function call($method, $uri, $payload = [], $firstTry = false)
     {
-        $response = PhpIPAM::getClient()->$method($this->config['url'].'/'.$this->config['app'].'/'.$uri, [
-            'headers' => $this->headers,
-            'json' => $payload,
-        ]);
+        try {
+            $response = PhpIPAM::getClient()->$method($this->config['url'].'/'.$this->config['app'].'/'.$uri, [
+                'headers' => $this->headers,
+                'json' => $payload,
+            ]);
 
-        return json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            if (!$firstTry && $e->getCode() == self::UNAUTHORIZED_CODE) {
+                Cache::forget(PhpIPAM::getCacheKey());
+                $this->configHeaders();
+                return $this->call($method, $uri, $payload, true);
+            } else {
+                throw $e;
+            }
+        }
     }
 
     private function configHeaders()
@@ -89,7 +102,7 @@ class Connector
             'json' => [],
         ]);
 
-        if ($response->getStatusCode() != 200) {
+        if ($response->getStatusCode() != self::SUCCESS_CODE) {
             throw new BadCredentialsException();
         }
 
