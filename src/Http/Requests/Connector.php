@@ -52,9 +52,10 @@ class Connector
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            if (!$firstTry && $e->getCode() == self::UNAUTHORIZED_CODE) {
+            if (! $firstTry && $e->getCode() == self::UNAUTHORIZED_CODE) {
                 Cache::forget(PhpIPAM::getCacheKey());
                 $this->configHeaders();
+
                 return $this->call($method, $uri, $payload, true);
             } else {
                 throw $e;
