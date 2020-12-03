@@ -116,6 +116,17 @@ class AddressController
     }
 
     /**
+     * @param array $address
+     * @return mixed
+     */
+    public function createFirstFree($subnet)
+    {
+        $response = $this->request->createFirstFree($subnet);
+
+        return get_key_or_null($response, 'id');
+    }
+
+    /**
      * @param $address
      * @param array $newData
      * @return mixed

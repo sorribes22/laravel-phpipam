@@ -3,9 +3,11 @@
 namespace Axsor\PhpIPAM;
 
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
+use Axsor\PhpIPAM\Http\Controllers\DeviceController;
 use Axsor\PhpIPAM\Http\Controllers\SectionController;
 use Axsor\PhpIPAM\Http\Controllers\SubnetController;
 use Axsor\PhpIPAM\Http\Controllers\ToolController;
+use Axsor\PhpIPAM\Http\Controllers\CircuitController;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use GuzzleHttp\Client;
 
@@ -156,6 +158,11 @@ class PhpIPAM
         return (new AddressController)->create($address);
     }
 
+    public function addressCreateFirstFree($subnet)
+    {
+        return (new AddressController)->createFirstFree($subnet);
+    }
+
     public function addressUpdate($address, array $newData)
     {
         return (new AddressController)->update($address, $newData);
@@ -206,6 +213,43 @@ class PhpIPAM
     public function sectionDrop($section)
     {
         return (new SectionController)->drop($section);
+    }
+
+    // DEVICE CONTROLLER
+
+    public function devices()
+    {
+        return (new DeviceController)->index();
+    }
+
+    public function device($device)
+    {
+        return (new DeviceController)->show($device);
+    }
+
+    public function deviceSubnets($device)
+    {
+        return (new DeviceController)->subnets($device);
+    }
+
+    public function deviceAddresses($device)
+    {
+        return (new DeviceController)->addresses($device);
+    }
+
+    public function deviceCreate(array $device)
+    {
+        return (new DeviceController)->create($device);
+    }
+
+    public function deviceUpdate($device, array $newData)
+    {
+        return (new DeviceController)->update($device, $newData);
+    }
+
+    public function deviceDrop($device)
+    {
+        return (new DeviceController)->drop($device);
     }
 
     // SUBNET CONTROLLER
@@ -349,6 +393,38 @@ class PhpIPAM
     public function tagDrop($tag)
     {
         return (new ToolController)->tagDrop($tag);
+    }
+
+    public function deviceTypes()
+    {
+        return (new ToolController)->deviceTypes();
+    }
+
+    // CIRCUITS
+
+    public function circuits()
+    {
+        return (new CircuitController)->index();
+    }
+
+    public function circuit($circuit)
+    {
+        return (new CircuitController)->show($circuit);
+    }
+
+    public function circuitCreate(array $circuit)
+    {
+        return (new CircuitController)->create($circuit);
+    }
+
+    public function circuitUpdate($circuit, array $newData)
+    {
+        return (new CircuitController)->update($circuit, $newData);
+    }
+
+    public function circuitDrop($circuit)
+    {
+        return (new CircuitController)->drop($circuit);
     }
 
     // RAW DATA

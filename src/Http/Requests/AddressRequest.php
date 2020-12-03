@@ -57,6 +57,13 @@ class AddressRequest extends Connector
         return $this->post('addresses', $address);
     }
 
+    public function createFirstFree($subnet)
+    {
+        $id = get_id_from_variable($subnet);
+
+        return $this->post("addresses/first_free/{$id}", $subnet);
+    }
+
     public function update($address, array $newData)
     {
         $id = get_id_from_variable($address);
