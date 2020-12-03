@@ -3,9 +3,9 @@
 namespace Axsor\PhpIPAM\Http\Controllers;
 
 use Axsor\PhpIPAM\Http\Requests\ToolRequest;
+use Axsor\PhpIPAM\Models\Device;
 use Axsor\PhpIPAM\Models\Location;
 use Axsor\PhpIPAM\Models\Tag;
-use Axsor\PhpIPAM\Models\Device;
 
 class ToolController
 {
