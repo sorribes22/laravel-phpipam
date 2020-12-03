@@ -3,13 +3,9 @@
 namespace Axsor\PhpIPAM\Http\Controllers;
 
 use Axsor\PhpIPAM\Http\Requests\DeviceRequest;
-use Axsor\PhpIPAM\Models\Device;
-use Axsor\PhpIPAM\Models\CustomField;
-use Axsor\PhpIPAM\Models\Section;
-use Axsor\PhpIPAM\Models\Subnet;
 use Axsor\PhpIPAM\Models\Address;
-use Axsor\PhpIPAM\Models\Location;
-use Axsor\PhpIPAM\Models\Circuit;
+use Axsor\PhpIPAM\Models\Device;
+use Axsor\PhpIPAM\Models\Subnet;
 
 class DeviceController
 {

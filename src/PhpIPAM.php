@@ -3,11 +3,11 @@
 namespace Axsor\PhpIPAM;
 
 use Axsor\PhpIPAM\Http\Controllers\AddressController;
+use Axsor\PhpIPAM\Http\Controllers\CircuitController;
 use Axsor\PhpIPAM\Http\Controllers\DeviceController;
 use Axsor\PhpIPAM\Http\Controllers\SectionController;
 use Axsor\PhpIPAM\Http\Controllers\SubnetController;
 use Axsor\PhpIPAM\Http\Controllers\ToolController;
-use Axsor\PhpIPAM\Http\Controllers\CircuitController;
 use Axsor\PhpIPAM\Http\Requests\AddressRequest;
 use GuzzleHttp\Client;
 
