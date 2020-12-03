@@ -174,6 +174,28 @@ $section->drop();
 $section->subnets();
 ```
 
+### Device
+#### Global methods
+```php
+PhpIPAM::devices();
+PhpIPAM::device($device);
+PhpIPAM::deviceAddresses($device);
+PhpIPAM::deviceSubnets($device);
+PhpIPAM::deviceCreate($data);
+PhpIPAM::deviceUpdate($device, $data);
+PhpIPAM::deviceDrop($device);
+```
+
+#### Model methods
+```php
+$device->subnets();
+$device->addresses();
+$device->deviceTypes();
+$device->update();
+$device->drop();
+$device->ping();
+```
+
 ### Subnet
 #### Global methods
 ```php
@@ -226,6 +248,7 @@ PhpIPAM::addressTags();
 PhpIPAM::addressTag($tag);
 PhpIPAM::tagAddresses($tag);
 PhpIPAM::addressCreate($data);
+PhpIPAM::addressCreateFirstFree($subnet);
 PhpIPAM::addressUpdate($address, $data);
 PhpIPAM::addressDrop($address);
 ```
@@ -235,6 +258,23 @@ PhpIPAM::addressDrop($address);
 $address->update();
 $address->drop();
 $address->ping();
+```
+
+### Circuit
+#### Global methods
+```php
+PhpIPAM::circuits();
+PhpIPAM::circuit($circuit);
+PhpIPAM::circuitCreate($circuit);
+PhpIPAM::circuitUpdate($circuit, $newData);
+PhpIPAM::circuitDrop($circuit);
+```
+
+#### Model methods
+```php
+$circuit->update();
+$circuit->drop();
+$circuit->subnets();
 ```
 
 ### Tools
@@ -251,6 +291,8 @@ PhpIPAM::tag($tag);
 PhpIPAM::tagCreate($tag);
 PhpIPAM::tagUpdate($tag, $newData);
 PhpIPAM::tagDrop($tag);
+
+PhpIPAM::deviceTypes();
 ```
 
 #### Model methods

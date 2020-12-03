@@ -65,4 +65,9 @@ class ToolRequest extends Connector
 
         return $this->delete("tools/tags/{$id}");
     }
+
+    public function deviceTypes()
+    {
+        return $this->get('tools/device_types');
+    }
 }

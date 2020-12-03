@@ -5,6 +5,7 @@ namespace Axsor\PhpIPAM\Http\Controllers;
 use Axsor\PhpIPAM\Http\Requests\ToolRequest;
 use Axsor\PhpIPAM\Models\Location;
 use Axsor\PhpIPAM\Models\Tag;
+use Axsor\PhpIPAM\Models\Device;
 
 class ToolController
 {
@@ -83,5 +84,12 @@ class ToolController
         $response = $this->request->tagDrop($tag);
 
         return (bool) $response['success'];
+    }
+
+    public function deviceTypes()
+    {
+        $response = $this->request->deviceTypes();
+
+        return response_to_collect($response, Device::class);
     }
 }
