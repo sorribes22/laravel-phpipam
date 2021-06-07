@@ -1,4 +1,4 @@
-# Laravel - PhpIPAM (IN DEVELOPEMENT)
+# Laravel - PhpIPAM
 
 [![Latest Stable Version](https://poser.pugx.org/axsor/laravel-phpipam/v/stable.png)](https://packagist.org/packages/axsor/laravel-phpipam)
 [![Build Status](https://travis-ci.org/sorribes22/laravel-phpipam.svg?branch=master)](https://travis-ci.org/sorribes22/laravel-phpipam)
